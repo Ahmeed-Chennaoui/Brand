@@ -1,0 +1,72 @@
+
+.sidebar_container{
+    flex:1;
+    min-height:100vh;
+    min-width:250px;
+    justify-content: center;
+    
+    .logo{
+        
+        height: 50px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .logo_text{
+            font-size: 46px;
+            font-weight: bold;
+            color: #6439ff ;
+            
+        }
+    }
+    hr{
+        height: 0;
+        border: 0.5px solid rgb(230,227,227);
+        width: 60%;
+        margin:10px auto
+    }
+    .options{
+        
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            .title{
+                text-align: center;
+                font:15px bold;
+                color:#666;
+                
+
+            }
+            li{
+                margin:10px 15px;
+                display: flex;
+                justify-content: center;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                padding: 7px;
+                cursor: pointer;
+                &:hover{
+                    background-color: #6439ff45;
+                }
+                
+                .icon{
+                    font-size: 24px;
+                    color: #6439ff;
+                    
+                }
+                .option_text{
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #555;
+                    margin: 10px;
+                }
+            }
+        }
+
+    }
+}
+.element_clicked{
+    background-color: #6439ff45
+}
