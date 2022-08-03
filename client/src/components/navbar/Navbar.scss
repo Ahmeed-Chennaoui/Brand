@@ -48,6 +48,13 @@ $padding_vertical:8px;
     // border-radius: 10%;
     background-color: white;
 }
+.dropdown_menu_top{
+    font-size: 20px;
+    width: 100%;
+    text-align: end;
+    text-decoration: underline;
+    cursor: pointer;
+}
 @media all and (max-width:799px){
     .logo_text{
         font-size: 26px;
@@ -56,6 +63,7 @@ $padding_vertical:8px;
         
     }
     .navbar_container{
+        position: sticky;
         height: 8vh;
         min-height: 70px;
         width: 100%;
@@ -80,6 +88,7 @@ $padding_vertical:8px;
 @media all and (min-width:800px){
 
     .navbar_container{
+        position: sticky;
         width: 100%;
         max-width:98vw;
         

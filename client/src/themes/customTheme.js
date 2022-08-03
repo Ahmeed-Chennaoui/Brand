@@ -8,6 +8,9 @@ export const customTheme = createTheme({
     orange: {
       main: "orange",
     },
+    red: {
+      main: "red",
+    },
     // secondary: {
     //   light: "#ff7961",
     //   main: "#f44336",
