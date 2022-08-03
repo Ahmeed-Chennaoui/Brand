@@ -1,29 +1,22 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
 import './Sidebar.scss'
 import Element from './Element';
 import Badge from '@mui/material/Badge';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 
 
 
 function Sidebar() {
-    let navigate = useNavigate();
 
   return (
-    <div className='sidebar_container'>
-        <div className="logo">
-            <div className="logo_text">
-                Brand
-            </div>
-        </div>
+    <div className='sidebar_container' >
         <hr />
         <div className="options">
         
@@ -32,20 +25,19 @@ function Sidebar() {
                 <p className="title">MAIN</p>
                 <hr />
                
-                <Element callback={()=>navigate("dashboard")}>
+                <Element goTo="dashboard">
                     <DashboardOutlinedIcon className='icon' />
                     <span className='option_text'>Dashboard</span>
-                </Element>
-                
-                <Element>
-                    <Badge badgeContent={5} color="primary" className='badge_container'>
-                        <NotificationsOutlinedIcon className='icon'/>
-                    </Badge>
-                    <span className='option_text'>Notifications</span>
                 </Element>
                 <hr />
                 <p className="title">USERS</p>
                 <hr />
+                <Element>
+                    <Badge badgeContent={11} max={9} color="primary">
+                        <WorkOutlineOutlinedIcon className='icon'/>
+                    </Badge>
+                    <span className='option_text'>Job listings</span>
+                </Element>
 
                 <Element>
                     <Badge badgeContent={9} color="primary">

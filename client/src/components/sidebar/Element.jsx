@@ -1,8 +1,13 @@
 import React,{useRef} from 'react'
 import './Sidebar.scss'
-function Element(props) {
+import { useNavigate } from 'react-router-dom';
+function Element({goTo,children}) {
+     let navigate = useNavigate();
+
     let element = useRef(null)
-    function handleClick({callback}){
+
+
+    function handleClick(){
         let siblings =element.current.parentElement.children
         for (let el in siblings){
             if (siblings[el].classList)
@@ -10,13 +15,15 @@ function Element(props) {
 
         }
         element.current.classList.add("element_clicked");
-        callback();
+        if (goTo)
+        navigate(`${goTo}`)
+        
 
     }
   return (
       
           <li ref={element} onClick={handleClick} >
-            {props.children}
+            {children}
         </li>
      
    

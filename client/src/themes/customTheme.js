@@ -5,6 +5,9 @@ export const customTheme = createTheme({
     primary: {
       main: "#6439ff",
     },
+    orange: {
+      main: "orange",
+    },
     // secondary: {
     //   light: "#ff7961",
     //   main: "#f44336",

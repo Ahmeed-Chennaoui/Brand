@@ -6,7 +6,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/admin/*" element={<Admin />} />
-        <Route path="/" element={<div>fuck you</div>} />
+        <Route path="/" element={<div>main page</div>} />
       </Routes>
     </div>
   );

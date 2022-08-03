@@ -1,24 +1,18 @@
+@media all and (max-width:799px){
 
-.sidebar_container{
-    flex:1;
-    min-height:100vh;
-    min-width:250px;
+    .sidebar_container{
+        display: none;
+    }
+}
+@media all and (min-width:800px) {
+    
+    .sidebar_container{
+        margin-top: 2vh;
+        flex:1;
+        min-width:250px;
     justify-content: center;
     
-    .logo{
-        
-        height: 50px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .logo_text{
-            font-size: 46px;
-            font-weight: bold;
-            color: #6439ff ;
-            
-        }
-    }
+ 
     hr{
         height: 0;
         border: 0.5px solid rgb(230,227,227);
@@ -64,9 +58,10 @@
                 }
             }
         }
-
+        
     }
 }
 .element_clicked{
     background-color: #6439ff45
+}
 }
