@@ -1,39 +1,61 @@
-import React,{useState} from 'react'
-import './Navbar.scss'
-import SearchIcon from '@mui/icons-material/Search';
-import { Badge, ClickAwayListener } from '@mui/material';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import { Paper } from '@mui/material';
-
-
+import React from 'react'
+import { useNavigate ,Link } from 'react-router-dom';
+import Element from './Element';
+import './navbar.scss';
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    useTheme,
+    useMediaQuery,
+    Box
+  } from "@mui/material";
+import DrawerComponent from "../Drawer/drawer";
+import Authentification from "../Authentification/authentification"
+import SearchField from "../SearchField/searchField"
+import Notification from "../Notification/notification"
+import Settings from "../Settings/settings"
 function Navbar() {
-  const [notifications,setNotofications]= useState(false);
+  let navigate = useNavigate();
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const classes = {
+      logo:"logo",
+      link:"link",
+      navlinks:"navlinks"
+    };
   return (
-    <div className='navbar_container'>
-        <div className="logo" >
-            <div className="logo_text">
-                Brand
-            </div>
-        </div>
-        <div className="searchbar_container">
-        <SearchIcon fontSize='large' color='primary'/>
-        <input type="text" placeholder='Search ...' className='searchbar'/>
-        </div>
-        <div className="dropdown">
+    <Box sx={{ marginBottom: '70px' }}>
+    <AppBar >
+      <Toolbar className="tool-bar">
+      {/*<Element callback={()=>navigate("/")}>
+        <Typography variant="h4" className={classes.logo}>
+            Brand
+        </Typography>
+      </Element>*/}
+      <Link to="/" >
+        <Typography variant="h4" className={classes.logo}>
+          Brand
+        </Typography>
+  </Link>
+  <SearchField></SearchField>
 
-        <div className='dropdown_btn' onClick={()=>setNotofications(!notifications)}>
-                    <Badge badgeContent={5} color="orange" overlap="circular" className='badge' >
-                        <NotificationsOutlinedIcon className='icon'  fontSize='inherit' />
-                    </Badge>
-        </div>
-        {notifications && <ClickAwayListener onClickAway={()=>setNotofications(false)} className="dropdown_menu">
-                      <Paper elevation={1} sx={{position:"absolute",right:0,marginTop:"13px",width:"30vw",height:"70vh",borderRadius:"5%",maxWidth:"500px",minWidth:"300px"}}>
-                        aaa
-                      </Paper>
-                    </ClickAwayListener>}
-        </div>
-        
-    </div>
+        {isMobile ? (
+          <DrawerComponent />
+        ) : (
+        <div className={classes.navlinks}>
+
+            <Authentification></Authentification>
+            <Notification></Notification>
+            <Settings></Settings>
+            <Link to="/" className={classes.link}>
+              about
+            </Link>
+          </div>
+          )}
+      </Toolbar>
+    </AppBar>
+    </Box>
   )
 }
 

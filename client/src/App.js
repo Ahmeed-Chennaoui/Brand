@@ -1,4 +1,5 @@
 import Admin from "./pages/admin/Admin";
+import Home from "./pages/Home/home"
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/admin/*" element={<Admin />} />
-        <Route path="/" element={<div>main page</div>} />
+        <Route path="/" element={<Home/>} />
       </Routes>
     </div>
   );
