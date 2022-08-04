@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import './Admin.scss'
 import Sidebar from '../../components/sidebar/Sidebar'
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/NavBar/Navbar';
 import Dashboard from './dashboard/Dashboard';
 function Admin() {
   return (<>

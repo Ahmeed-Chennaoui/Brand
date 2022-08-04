@@ -12,42 +12,7 @@ $padding_vertical:8px;
         
     }
 }
-.badge{
-    color: white;
-}
 
-.dropdown_btn{
-    font-size: 30px;
-    border:#6439ff solid 2px;
-    padding:calc($padding_vertical - 4px) $padding_vertical ;
-    border-radius: 25%;
-        
-    &:hover{
-        background-color: #6439ff;
-        .icon{
-            color: white;
-        }
-        
-    }
-    .icon{
-        color:#6439ff;
-    }
-   }
-   .dropdown{
-    position: relative;
-
-   }
-   .dropdown_menu{
-    position: absolute;
-    top:100%;
-    margin-top:10px;
-    right: 0;
-    width:10vw;
-    height:30vh;
-    // border: #6439ff 1px solid;
-    // border-radius: 10%;
-    background-color: white;
-}
 @media all and (max-width:799px){
     .logo_text{
         font-size: 26px;
@@ -56,6 +21,7 @@ $padding_vertical:8px;
         
     }
     .navbar_container{
+        position: sticky;
         height: 8vh;
         min-height: 70px;
         width: 100%;
@@ -80,6 +46,7 @@ $padding_vertical:8px;
 @media all and (min-width:800px){
 
     .navbar_container{
+        position: sticky;
         width: 100%;
         max-width:98vw;
         
@@ -109,6 +76,6 @@ $padding_vertical:8px;
                 width:20vw;
             }
             }
-        }
     }
+}
 }

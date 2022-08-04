@@ -1,9 +1,12 @@
 import React from 'react'
-import TextField from '@mui/material/TextField';
-
+import SearchIcon from '@mui/icons-material/Search';
+import "./searchField.scss"
 export const searchField = () => {
   return (
-    <TextField></TextField>
+    <div className="searchbar_container">
+        <SearchIcon fontSize='large' color='primary'/>
+        <input type="text" placeholder='Search ...' className='searchbar'/>
+    </div>
   )
 }
 export default searchField;

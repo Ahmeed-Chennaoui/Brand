@@ -1,0 +1,20 @@
+searchbar_container{
+    padding: 0px 10px;
+    display: flex;
+    align-self: center;
+    border: solid 2px #6439ff;
+    border-radius: 20px;
+    .searchbar{
+    width:14vw;
+    transition: width 0.5s ease-out;
+    height:4vh;
+    outline: none;
+    border-radius: 20px;
+    min-height: 35px;
+    border: none;
+    padding:0 15px;
+    &:focus{
+        width:20vw;
+    }
+    }
+}

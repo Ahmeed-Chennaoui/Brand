@@ -1,22 +1,21 @@
 import React from 'react'
-//import { Routes, Route } from "react-router-dom";
-import NavBar from '../../components/NavBar/navbar'
+import NavBar from '../../components/NavBar/Navbar'
 import Hero from '../../components/Hero/hero'
 import TheFooter from '../../components/footer/footer'
-import Categories from '../../components/Categories/categories'
-import {CssBaseline} from '@mui/material';
-//import './home.scss'
+import JobCategories from '../../components/jobCategories/JobCategories'
+import {CssBaseline, Box} from '@mui/material';
+import './home.scss'
 function home() {
   return (
     <div className='user_container'>
       <CssBaseline />
       <NavBar/>
-      <Hero sx={{ width: window.innerWidth ,height: window.innerHeight}}/>
+      <Box height="100vh" display="flex" flexDirection="column"><Hero /></Box>
       {/*<Section />
       <AboutUs />
       <Testimonial />
       <ContactUs />*/}
-      <Categories/>
+      <JobCategories/>
       <TheFooter />
     </div>
   )

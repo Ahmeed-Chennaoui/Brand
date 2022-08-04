@@ -6,11 +6,10 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import IconButton from"@mui/material/IconButton";
 import MenuIcon from '@mui/icons-material/Menu';
 import Authentification from "../Authentification/authentification"
-import Notification from "../Notification/notification"
 import Settings from "../Settings/settings"
 
 function DrawerComponent() {
@@ -30,7 +29,6 @@ function DrawerComponent() {
     >
         <List>
         <Authentification></Authentification>
-        <Notification></Notification>
         <Settings></Settings>
         <ListItem onClick={() => setOpenDrawer(false)}>
           <ListItemText>
