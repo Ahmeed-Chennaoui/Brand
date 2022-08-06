@@ -8,21 +8,21 @@ import {
   } from "@mui/material";
 import DrawerComponent from "../Drawer/drawer";
 import SearchField from "../SearchField/searchField"
-import Notification from "../Notification/notification"
+import ProfileBar from "../ProfileBar/profileBar"
 
 
 function Navbar() {
   return (
     <AppBar >
       <Toolbar className="navbar_container">
+      <DrawerComponent />
       <Link className="logo" to="/" >
-        <Typography variant="h4" className="logo_text">
+        <Typography variant="h6" className="logo_text">
           Brand
         </Typography>
       </Link>
       <SearchField></SearchField>
-      <Notification></Notification>
-      <DrawerComponent />
+      <ProfileBar></ProfileBar>
       </Toolbar>
     </AppBar>
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import NavBar from '../../components/NavBar/Navbar'
 import Hero from '../../components/Hero/hero'
-import TheFooter from '../../components/footer/footer'
 import JobCategories from '../../components/jobCategories/JobCategories'
 import {CssBaseline, Box} from '@mui/material';
 import './home.scss'
@@ -16,7 +15,6 @@ function home() {
       <Testimonial />
       <ContactUs />*/}
       <JobCategories/>
-      <TheFooter />
     </div>
   )
 }
