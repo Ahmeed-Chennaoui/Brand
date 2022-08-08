@@ -14,17 +14,13 @@ import IconButton from"@mui/material/IconButton";
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
+import CloseIcon from '@mui/icons-material/Close';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 function DrawerComponent() {
     const [openDrawer, setOpenDrawer] = useState(false);
-    const classes = {
-      logo:"logo",
-      link:"link",
-      navlinks:"navlinks",
-      bottomPush:"bottom_push"
-    };
   return (
-    <>
+    <React.Fragment>
     <Drawer 
     anchor="left"
     className="nav_drawer" 
@@ -35,16 +31,16 @@ function DrawerComponent() {
         <ListItem onClick={() => setOpenDrawer(false)}>
         <ListItemText
           primary={
-            <div className="Makes the icon and text aligned" style={{
-              display: 'flex',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-          }}>
-            <Link className="logo" to="/" >
-              <Typography variant="h2" className="logo_text">
+            <div className="Icon_text" >
+            <Link underline="none" className="logo Icon_text" to="/" >
+              <LocalShippingIcon classname="logo_img"/>
+              <Typography variant="h6" className="logo_text">
                 Brand
               </Typography>
             </Link>
+            <IconButton onClick={() => setOpenDrawer(openDrawer)}>
+              <CloseIcon />
+            </IconButton>
             </div>}
           primaryTypographyProps={{
             fontSize: 15,
@@ -56,11 +52,7 @@ function DrawerComponent() {
         <ListItemText
           primary={
             <Link to="/">
-              <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-          }}>
+              <div className="Icon_text" >
               <HomeIcon color="primary"/>
               <span>Home</span></div>
             </Link>
@@ -73,11 +65,7 @@ function DrawerComponent() {
         <List divider='true' className="Info_section">
         <ListItemText
           primary={
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-          }}>
+            <div className="Icon_text">
             <InfoIcon 
             color="primary" 
             fontSize="small"
@@ -91,19 +79,19 @@ function DrawerComponent() {
         />
         <ListItem onClick={() => setOpenDrawer(false)}>
           <ListItemText>
-            <Link to="/" className={classes.link}>
+            <Link to="/" className="link">
             about us</Link>
           </ListItemText>
        </ListItem>
        <ListItem onClick={() => setOpenDrawer(false)}>
           <ListItemText>
-            <Link to="/" className={classes.link}>
+            <Link to="/" className="link">
             announcements</Link>
           </ListItemText>
        </ListItem>
        <ListItem onClick={() => setOpenDrawer(false)}>
           <ListItemText>
-            <Link to="/" className={classes.link}>
+            <Link to="/" className="link">
             Rules</Link>
           </ListItemText>
        </ListItem>
@@ -114,14 +102,24 @@ function DrawerComponent() {
           </ListItem>
           */} 
         </List>
-        <div className={classes.bottomPush}>
+        <div className="bottomPush">
         <TheFooter/>
         </div>
-      </Drawer>
-      <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
+    
+    </Drawer>
+    { !openDrawer ?(<>
+    <IconButton className="menu_button" onClick={() => setOpenDrawer(!openDrawer)}>
       <MenuIcon />
     </IconButton>
-  </>
+    <Link underline="none" className="logo Icon_text" to="/" >
+        <LocalShippingIcon classname="logo_img"/>
+        <Typography variant="h6" className="logo_text">
+          Brand
+        </Typography>
+    </Link></> 
+      ) : (
+      <></>)}
+  </React.Fragment>
   );
 }
 export default DrawerComponent;

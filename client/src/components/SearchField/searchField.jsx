@@ -1,12 +1,26 @@
-import React from 'react'
+import * as React from 'react';
+import {
+  useMediaQuery,
+  useTheme
+} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import "./searchField.scss"
-export const searchField = () => {
+
+const SearchField = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <div className="searchbar_container">
+    <>
+    { isMobile ? (
+      <div className="searchbar_container">
+      <SearchIcon fontSize='large' color='primary'/>
+      </div>
+    ) : (
+      <div className="searchbar_container">
         <SearchIcon fontSize='large' color='primary'/>
         <input type="text" placeholder='Search ...' className='searchbar'/>
-    </div>
-  )
+      </div>
+    )}
+  </>);
 }
-export default searchField;
+export default SearchField;

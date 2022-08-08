@@ -74,7 +74,8 @@ function ProfileDrawer() {
           */} 
         </List>
     </Drawer>
-    ) : (<Paper className="samller Desktop Menu">
+    ) : (
+    <Paper className="samller Desktop Menu">
       <Popover 
       open={openDrawer}
       onClose={() => setOpenDrawer(false)}
