@@ -1,5 +1,4 @@
-import React, { useState,MouseEvent} from "react";
-
+import React, { useState } from "react";
 import {
   Paper,
   Drawer,
@@ -22,17 +21,6 @@ function ProfileDrawer() {
   const theme = useTheme();
   const [openDrawer, setOpenDrawer] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  //const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const handleClick = (
-    //event: MouseEvent<HTMLButtonElement>
-  ) => {
-    //setAnchorEl(event.currentTarget);
-    setOpenDrawer(!openDrawer);
-  };
-  const handleClose = () => {
-    //setAnchorEl(null);
-    setOpenDrawer(false);
-  };
   return (
     <>
     { isMobile ? (
@@ -89,16 +77,18 @@ function ProfileDrawer() {
     ) : (<Paper className="samller Desktop Menu">
       <Popover 
       open={openDrawer}
-      onClose={handleClose}
+      onClose={() => setOpenDrawer(false)}
+      anchorReference="anchorPosition"
+      anchorPosition={{ top: 82, left: 2700 }}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'right',
       }}
       transformOrigin={{
-      vertical: 'top',
-      horizontal: 'right',
-  }}
->       <List>
+        vertical: 'top',
+        horizontal: 'left',
+      }}
+    >      <List>
         <Authentification></Authentification>
         <ListItem onClick={() => setOpenDrawer(false)}>
         <ListItemText
@@ -144,9 +134,10 @@ function ProfileDrawer() {
       </Popover>
       </Paper>
     )}
-    <IconButton onClick={() => handleClick()}>
+    <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
       <AccountCircleIcon />
     </IconButton>
+    
   </>
   );
 }
