@@ -65,7 +65,6 @@ function ProfileDrawer() {
             fontSize: 15,
             fontWeight: 'medium'}}
         /></ListItem>
-        <theme></theme>
          {/*<ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
               <Link to="/">Home</Link>
@@ -124,7 +123,6 @@ function ProfileDrawer() {
             fontSize: 15,
             fontWeight: 'medium'}}
         /></ListItem>
-        <theme></theme>
          {/*<ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
               <Link to="/">Home</Link>

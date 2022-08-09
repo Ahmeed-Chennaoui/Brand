@@ -11,12 +11,12 @@ import ProfileBar from "../ProfileBar/profileBar"
 
 function Navbar() {
   return (
-    <AppBar >
+    <AppBar position='sticky'>
       <Toolbar className="navbar_container">
-      <DrawerComponent />
-      <div className="flex_grow"/>
-      <SearchField></SearchField>
-      <ProfileBar></ProfileBar>
+        <DrawerComponent />
+        <div className="flex_grow"/>
+        <SearchField></SearchField>
+        <ProfileBar></ProfileBar>
       </Toolbar>
     </AppBar>
 

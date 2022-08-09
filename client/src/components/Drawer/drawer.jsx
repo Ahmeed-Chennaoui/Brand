@@ -33,7 +33,7 @@ function DrawerComponent() {
           primary={
             <div className="Icon_text" >
             <Link underline="none" className="logo Icon_text" to="/" >
-              <LocalShippingIcon classname="logo_img"/>
+              <LocalShippingIcon className="logo_img"/>
               <Typography variant="h6" className="logo_text">
                 Brand
               </Typography>
@@ -112,7 +112,7 @@ function DrawerComponent() {
       <MenuIcon />
     </IconButton>
     <Link underline="none" className="logo Icon_text" to="/" >
-        <LocalShippingIcon classname="logo_img"/>
+        <LocalShippingIcon className="logo_img"/>
         <Typography variant="h6" className="logo_text">
           Brand
         </Typography>
