@@ -3,6 +3,7 @@ import Home from "./pages/Home/home"
 import Results from "./pages/Results/results"
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <div>
