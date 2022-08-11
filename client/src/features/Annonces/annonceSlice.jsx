@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const annonceSlice = createSlice({
   name: 'annonce',
-  initialState: [ 
+  initialState: {value:[ 
     {
       id:"1",
       titre:"Carpenter",
@@ -38,7 +38,7 @@ export const annonceSlice = createSlice({
         categorie:"charpentier/charpentière",
         rating:5
     },
-  ],
+  ]},
   reducers: {
     retrieve (state, action ) {
         state.value=action.payload;
