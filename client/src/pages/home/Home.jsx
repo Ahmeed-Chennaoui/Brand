@@ -1,11 +1,16 @@
 import React from 'react'
-import Container from '@mui/material/Container';
 import JobCategories from '../../components/jobCategories/JobCategories'
+import BrandHero from '../../components/BrandHero'
+import BrandValues from '../../components/BrandValues'
+
+
+
 
 function Home() {
   return (
     <div>
-        <Container>hello</Container>
+        <BrandHero/>
+        <BrandValues/>
         <JobCategories/>
     </div>
   )
