@@ -1,0 +1,92 @@
+$annoncemaxwidth : 110px;
+$annoncemaxheight : 110px;
+@media only screen and (max-width: 480px){.annonce-container
+{
+  margin-bottom: 1.3rem;
+  padding: 0.9rem 0.9rem!important;
+  display: block;
+  .annonce{
+    border-bottom: 1px solid #e6e6e6;
+    max-width: auto;
+    max-height: auto;
+    display: flex;
+    .img-support{
+        margin-right: 6px;
+        margin-bottom: 16px!important;
+        box-sizing: border-box;
+        display:block;
+        min-height: 110px;
+        min-width: 127.5px;
+        padding-left: 3px;
+    .img{
+        vertical-align: top;
+        height: $annoncemaxheight;
+        max-width: $annoncemaxwidth;
+        max-height: $annoncemaxheight;
+        
+    };};
+    .trdp-support{
+        padding-top: 0.4rem;
+        margin-top: 0!important;
+        display:inline-block;
+        line-height: 0;
+        margin : 0 0 3px;
+        padding-right: 5px;
+        box-sizing: border-box;
+        .title{
+            font-size: 1.5em!important;
+            line-height: 1.4!important;
+        };
+        .description{
+            color: #565959!important;
+        };
+        .prix{
+            color:rgba(255, 0, 0, 0.726);
+            font-weight: 700;
+        };
+    }
+}}}
+@media only screen and (min-width: 480px){.annonce-container
+    {
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      margin-left: 1px;
+      display: flex;
+      box-sizing: border-box;
+      .annonce{
+        margin: 0;
+        overflow:hidden;
+        padding: 0;
+        border-bottom: 1px solid #e6e6e6;
+        max-width: auto;
+        max-height: auto;
+        display: block;
+        .img-support{
+            display:block;
+        .img{
+            vertical-align: top;
+            height: 200px;
+            max-width: 302px;
+            max-height: 200px;
+            border:0;
+            
+        };};
+        .trdp-support{
+            margin : 0;
+            padding: 0;
+            overflow:hidden;
+            display: block;
+            .title{
+                font-size: 1.5em!important;
+                line-height: 1.4!important;
+                overflow:hidden;
+            };
+            .description{
+                color: #565959!important;
+            };
+            .prix{
+                color:rgba(255, 0, 0, 0.726);
+                font-weight: 700;
+            };
+        }
+    }}}

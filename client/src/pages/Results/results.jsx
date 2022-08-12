@@ -12,9 +12,9 @@ import {
 import {
   selectAnnonce,
 } from '../../features/Annonces/annonceSlice';
-import SearchFilter from './searchFilter'
-import SearchOrder from './searchOrder'
-import SearchResults from './searchResults.jsx'
+import SearchFilter from './searchFilter/searchFilter'
+import SearchOrder from './searchOrder/searchOrder'
+import SearchResults from './searchResults/searchResults'
 const villes = [
 "Ariana","Ben Arous","Bizerte","Béja","Gabès","Gafsa","Jendouba","Kairouan","Kasserine","Kébili","La Manouba","Le Kef","Mahdia","Monastir","Médenine","Nabeul","Sfax","Sidi Bouzid","Siliana","Sousse","Tataouine","Tozeur","Tunis","Zaghouan"
 ];
