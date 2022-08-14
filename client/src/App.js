@@ -5,6 +5,7 @@ import Search from "./pages/search/Search";
 import { Routes, Route } from "react-router-dom";
 import { GlobalContext } from "./contexts/globalContext";
 import { useState } from "react";
+
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   return (

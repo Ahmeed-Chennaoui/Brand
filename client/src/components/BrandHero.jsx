@@ -8,12 +8,13 @@ import { useState, useEffect } from "react";
 import { Box } from "@mui/system";
 import { useTheme } from "@emotion/react";
 import { useRef } from "react";
+import Nav from "./Nav";
 
 const HeroContainer = styled("div")(({ theme }) => ({
   backgroundImage: `url(${Hero})`,
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  width: "99.1vw",
+  width: "100vw",
   height: "100vh",
   backgroundPosition: "90% 0%",
   [theme.breakpoints.down("md")]: {
@@ -140,25 +141,7 @@ function BrandHero() {
     <HeroContainer
       style={{ marginBottom: breakpoint ? `${marginBot}px` : "0px" }}
     >
-      <HeroNav fixed={fixedNavbar}>
-        <Typography variant="h2" className="logo" fontWeight="bold">
-          Brand
-        </Typography>
-        <Searchbar />
-        <div className="connection">
-          <Button
-            variant="outlined"
-            color="info"
-            sx={{ fontWeight: "bold" }}
-            size="large"
-          >
-            Login
-          </Button>
-          <Button variant="contained" size="large">
-            Signup
-          </Button>
-        </div>
-      </HeroNav>
+      <Nav fixedNavbar={fixedNavbar} />
       {!breakpoint && (
         <BrandMotto>
           <div

@@ -1,81 +1,65 @@
-import React from 'react'
-import { styled } from '@mui/material/styles';
-import Autocomplete from '@mui/material/Autocomplete';
-import { TextField } from '@mui/material';
+import React from "react";
+import { styled } from "@mui/material/styles";
+import Autocomplete from "@mui/material/Autocomplete";
+import { TextField } from "@mui/material";
 
-const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
-    { title: 'The Dark Knight', year: 2008 },
-    { title: '12 Angry Men', year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: 'Pulp Fiction', year: 1994 },
-    {
-      title: 'The Lord of the Rings: The Return of the King',
-      year: 2003,
-    }]
+const jobs = [
+  { title: "Plumber" },
+  { title: "Carpenter" },
+  { title: "Blacksmith" },
+  { title: "Painter" },
+  { title: "Mason worker" },
+  { title: "Electrician" },
+  { title: "Mecanic" },
+  { title: "Cleaning" },
+  { title: "Gardner" },
+];
 
+const SearchContainer = styled(Autocomplete, {
+  shouldForwardProp: (prop) => prop !== "fixed",
+})(({ theme, fixed }) => ({
+  "& .MuiAutocomplete-input": {
+    color: fixed ? "black" : "white",
+    textShadow: fixed ? "none" : "black 0px 0px 2px",
+    fontSize: "1.35em",
+    transition: theme.transitions.create(["all"], {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  "& .MuiInputLabel-filled:not(.MuiInputLabel-shrink)": {
+    color: fixed ? "black" : "white",
+    textShadow: fixed ? "none" : "black 0px 0px 2px",
+    fontSize: "26px",
+    fontWeight: "300",
+    letterSpacing: 1,
+  },
+  "& .MuiInputLabel-shrink": {
+    fontSize: "20px",
+    fontWeight: "bold",
+  },
+  "& .MuiFilledInput-root": {
+    backgroundColor: "rgba(255,255,255,0)",
+  },
 
-
-const SearchContainer = styled(Autocomplete)(({theme})=>({
-   
-    "& .MuiAutocomplete-input":{
-        color:'black',
-        fontSize:'1.35em',
-        transition : theme.transitions.create(['all'],{
-            duration:theme.transitions.duration.shortest
-        }),
-
+  [theme.breakpoints.down("md")]: {
+    "& .MuiAutocomplete-input": {
+      fontSize: "1em",
     },
-    "& .MuiInputLabel-filled:not(.MuiInputLabel-shrink)": {
-        color:'black',
-        fontSize:"20px",
-        textShadow:'white 0px 0px 3px'
-    
-
-      },
-      "& .MuiInputLabel-shrink":{
-        fontSize:'20px',
-        fontWeight:'bold',
-        
-
-      },
-    "& .MuiFilledInput-root":{
-        
-        backgroundColor:'rgba(255,255,255,0.15)'
-    },
-    "&.MuiAutocomplete-inputFocused":{
-        backgroundColor:'white',
-   
-
-        },
-    [theme.breakpoints.down('md')]:{
-        "& .MuiAutocomplete-input":{
-            fontSize:'1em'
-        }
-    }
-}))
-function Searchbar() {
+  },
+}));
+function Searchbar({ fixedNavbar }) {
   return (
-    
-    <SearchContainer 
-    freeSolo
-    options={top100Films}
-    getOptionLabel={(option) => option.title}
-    renderInput={(params) => {
-      return (
-        <TextField
-          {...params}
-          label="Search"
-         variant='filled'
-          fullWidth
-          
-        />
-      );
-    }}/>
-    
-  )
+    <SearchContainer
+      fixed={fixedNavbar}
+      freeSolo
+      options={jobs.map((job) => job.title)}
+      renderInput={(params) => {
+        return (
+          <TextField {...params} label="Search" variant="filled" fullWidth />
+        );
+      }}
+    />
+  );
 }
 
-export default Searchbar
+export default Searchbar;

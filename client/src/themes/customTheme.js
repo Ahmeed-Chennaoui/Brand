@@ -1,3 +1,4 @@
+import { indigo } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 export const customTheme = createTheme({
@@ -5,17 +6,12 @@ export const customTheme = createTheme({
     primary: {
       main: "#6439ff",
     },
+    secondary: indigo,
     orange: {
       main: "orange",
     },
     red: {
       main: "red",
     },
-    // secondary: {
-    //   light: "#ff7961",
-    //   main: "#f44336",
-    //   dark: "#ba000d",
-    //   contrastText: "#000",
-    // },
   },
 });
