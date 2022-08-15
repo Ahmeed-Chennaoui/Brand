@@ -34,7 +34,7 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
     height: '40vh',
     [theme.breakpoints.down('md')]: {
       width: '100% !important',
-      height: 100,
+      height: 125,
     },
     '&:hover': {
       zIndex: 1,
@@ -53,15 +53,22 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
       padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
     },
     '& .imageMarked': {
-      height: 3,
+      height: 4,
       width: 18,
       background: theme.palette.common.white,
       position: 'absolute',
-      bottom: -2,
+      bottom: -4,
       left: 'calc(50% - 9px)',
       transition: theme.transitions.create('opacity'),
     },
   }));
+  const underline ={
+    backgroundColor:'#6439ff',
+    width:'50px',
+    height:'5px',
+    m:'auto',
+    mt:'5px'
+  }
   
   const images = [
     {
@@ -113,10 +120,11 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
 
 function JobCategories() {
   return (
-    <Container component="section" sx={{ mt: 8, mb: 4 }}>
-    <Typography variant="h4" marked="center" align="center" component="h2">
-      For all your professional needs
+    <Container component="section" sx={{ mt: 8, mb: 4 }} >
+    <Typography variant="h4" align="center" component="h2" >
+      Serving all your professional needs
     </Typography>
+    <Box sx={underline}/>
     <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
       {images.map((image) => (
         <ImageIconButton
