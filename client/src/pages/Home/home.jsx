@@ -1,22 +1,19 @@
 import React from 'react'
-import NavBar from '../../components/NavBar/Navbar'
-import Hero from '../../components/Hero/hero'
 import JobCategories from '../../components/jobCategories/JobCategories'
-import {CssBaseline, Box} from '@mui/material';
-import './home.scss'
-function home() {
+import BrandHero from '../../components/BrandHero'
+import BrandValues from '../../components/BrandValues'
+
+
+
+
+function Home() {
   return (
-    <div className='user_container'>
-      <CssBaseline />
-      <NavBar/>
-      <Box height="100vh" display="flex" flexDirection="column"><Hero /></Box>
-      {/*<Section />
-      <AboutUs />
-      <Testimonial />
-      <ContactUs />*/}
-      <JobCategories/>
+    <div>
+        <BrandHero/>
+        <BrandValues/>
+        <JobCategories/>
     </div>
   )
 }
 
-export default home
+export default Home
