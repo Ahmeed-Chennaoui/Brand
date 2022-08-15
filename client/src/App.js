@@ -1,6 +1,6 @@
 import * as React from "react";
 import Admin from "./pages/admin/Admin";
-import Home from "./pages/home/Home";
+import Home from "./pages/Home/Home";
 import Search from "./pages/search/Search";
 import { Routes, Route } from "react-router-dom";
 import { GlobalContext } from "./contexts/globalContext";
