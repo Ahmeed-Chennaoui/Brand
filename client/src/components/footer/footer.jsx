@@ -18,13 +18,13 @@ const theFooter = () => {
         className={classes.footerContainer}
         >
             <Typography className={classes.footerText}>
-                  Provided by{' '}
-            <Link href="https://appseed.us" underline="none">
-                AppSeed
+                  Provided by
+            <Link href="#" underline="none">
+                Link
             </Link>
             </Typography>
-            <Typography className={classes.footerDate}>
-                Open-Source Sample - Buit with MUI
+            <Typography>
+            
             </Typography>
         </Box>
     );

@@ -1,6 +1,5 @@
 import React from 'react'
 import "./searchResults.scss"
-import { useTheme } from '@mui/material/styles';
 import {
     Grid,
     Paper,
@@ -12,11 +11,14 @@ import {
 import Rating from '@mui/material/Rating';
 
 const SearchResults = ({items,perPage}) => {
-    const theme = useTheme();
   return (
     <Paper>
-    <Grid className="annonce-container" container rowSpacing={2} columnSpacing={.5}>
-        {   
+    <Grid 
+    className="annonce-container" 
+    container 
+    rowSpacing={2} 
+    columnSpacing={.5}>
+    {  
         items.map( (el) =>
             <Grid 
             item xs={12} sm={3} md={3}
@@ -28,7 +30,8 @@ const SearchResults = ({items,perPage}) => {
                     component="img"
                     className="img"
                     src={el.imgs[0]}
-                /></Paper>
+                />
+                </Paper>
                 <Paper className="trdp-support">
                 <Link href="#" color="inherit" underline="none">
                 <Typography className="title">{el.titre}</Typography>
@@ -41,9 +44,8 @@ const SearchResults = ({items,perPage}) => {
                 <Typography className="prix"> {(el.price && "prix : "+el.price)}</Typography>
                 </Link></Paper>
                 
-            </Grid>
-        )
-        }
+            </Grid>)
+    }
         </Grid>
     </Paper>
   )
