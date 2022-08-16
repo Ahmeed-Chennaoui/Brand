@@ -4,75 +4,75 @@ import { useState } from 'react'
 import SearchFilter from './searchFilter.jsx'
 import SearchView from './searchView.jsx'
 import SearchResults from './searchResults.jsx'
+import Nav from "../../components/Nav"
+import {allAnnonce ,villes,categories} from "./allAnnonce"
 
-const annonce = [ 
-    {
-      id:"1",
-      titre:"Carpenter",
-      description:"fabricationet réparation de meubles.",
-      imgs:[
-          "https://dictionary.cambridge.org/fr/images/full/carpen_noun_004_0668.jpg?version=5.0.248",
-          "https://dictionary.cambridge.org/fr/images/thumb/closet_noun_004_0810.jpg?version=5.0.248",
-          "https://dictionary.cambridge.org/fr/images/full/coffee_noun_002_07453.jpg?version=5.0.248"
-      ],
-      locations:[{
-        ville:"Ariana",
-        delegation:[]
-      }],
-      creationDate: new Date(),
-      active:true,
-      categorie:"charpentier/charpentière",
-      rating:5
-    } , {
-        id:"2",
-        titre:"Carpenter",
-        description:"fabricationet réparation de meubles.",
-        imgs:[
-            "https://dictionary.cambridge.org/fr/images/full/carpen_noun_004_0668.jpg?version=5.0.248",
-            "https://dictionary.cambridge.org/fr/images/thumb/closet_noun_004_0810.jpg?version=5.0.248",
-            "https://dictionary.cambridge.org/fr/images/full/coffee_noun_002_07453.jpg?version=5.0.248"
-        ],
-        locations:[{
-          ville:"Ariana",
-          delegation:[]
-        }],
-        creationDate: new Date(),
-        active:true,
-        categorie:"charpentier/charpentière",
-        rating:5
-    },
-]
-const villes = [
-    "Ariana","Ben Arous","Bizerte","Béja","Gabès","Gafsa","Jendouba","Kairouan","Kasserine","Kébili","La Manouba","Le Kef","Mahdia","Monastir","Médenine","Nabeul","Sfax","Sidi Bouzid","Siliana","Sousse","Tataouine","Tozeur","Tunis","Zaghouan"
-    ];
-const categories =[
-      "charpentier/charpentière",
-    ]
+let availablecategories = new Set();
+allAnnonce.forEach((annonce) => availablecategories.add(annonce.categorie));
+let availablevilles = new Set();
+allAnnonce.forEach((annonce) => availablevilles.add(annonce.locations.ville));
+
 export default function Search() {
-  const [filtre, setFiltre] = useState({ville:"",categorie:""});
+  const [annonce, setannonce] = useState([...allAnnonce])
+  const [filtre, setFiltre] = useState({ville:"",categorie:"",order:"nouveaux en premier"});
   const handleChange = (n : string) =>
   (event: SelectChangeEvent) =>
-  setFiltre({...filtre,[n]: event.target.value})
+  setFiltre({...filtre,[n]: event.target.value});
   ;
+  const handleOrder = (event) =>{
+    switch (event.target.value) {
+    case "nouveaux en premier":
+      setannonce([...annonce]
+        .sort((a,b) => a.creationDate > b.creationDate ? 1 : -1))
+      break;
+    case "prix croissant":
+      setannonce([...annonce]
+        .sort((a,b) => Number(a.price.match(/\d+/g)) > Number(b.price.match(/\d+/g)) ? 1 : -1))
+      break;
+      case "prix decroissant":
+        setannonce([...annonce]
+          .sort((a,b) => Number(a.price.match(/\d+/g)) < Number(b.price.match(/\d+/g)) ? 1 : -1))
+      break;
+    default:break;
+    }
+  }
   const submitHandler = (event) =>{
     event.preventDefault();
     //some ajax fetch request then filter probably
-    alert("submited");
-  }
+    setannonce(allAnnonce
+      .filter( (item) =>
+    (
+      !filtre.ville || 
+      item.locations.ville === filtre.ville
+    )
+    && 
+    (
+      !filtre.categorie || 
+      item.categorie == filtre.categorie) 
+    ));
+    
+  };
+
   return (
+    <div>
+    <Nav fixedNavbar="false"/>
+    <div style={{flexGrow:"1"}}/>
     <SearchContainer>
         <SearchFilter 
         handleChange={handleChange}
         submitHandler={submitHandler}
-        categories={categories}
-        villes={villes}
+        categories={Array.from(availablecategories)}
+        villes={Array.from(availablevilles)}
         filtre={filtre}
         ></SearchFilter>
-        <SearchView></SearchView>
+        <SearchView 
+        handleChange={(event) =>{handleChange("order")(event);handleOrder(event);}} 
+        order={filtre.order}></SearchView>
         <SearchResults 
         items={annonce}
         ></SearchResults>
     </SearchContainer>
+    </div>
   )
 }
 const SearchContainer =styled("div")(({theme}) => ({

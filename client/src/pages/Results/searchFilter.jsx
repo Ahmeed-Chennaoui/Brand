@@ -33,8 +33,8 @@ const SearchFilter = ({handleChange,submitHandler,categories,villes,filtre}) => 
           onChange={handleChange("categorie")}
         >
           <MenuItem aria-label="Aucune" value= "">Aucune</MenuItem>
-          {categories.map((name) =>
-            <MenuItem key={name} value={name}>{name}</MenuItem>
+          {categories.map((name,index) =>
+            <MenuItem key={index} value={name}>{name}</MenuItem>
             
           )}
         </Select>

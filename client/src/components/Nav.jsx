@@ -57,7 +57,7 @@ const HeroNav = styled(Box, { shouldForwardProp: (prop) => prop !== "fixed" })(
   ({ theme, fixed }) => ({
     position: fixed ? "fixed" : "relative",
     display: "flex",
-    zIndex: 2,
+    //zIndex: 2,
     justifyContent: "space-between",
     height: "75px",
     width: "100%",
