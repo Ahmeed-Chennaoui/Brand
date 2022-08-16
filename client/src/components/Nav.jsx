@@ -55,7 +55,8 @@ function Nav({ fixedNavbar }) {
 
 const HeroNav = styled(Box, { shouldForwardProp: (prop) => prop !== "fixed" })(
   ({ theme, fixed }) => ({
-    position: fixed ? "fixed" : "relative",
+    position: fixed ? "sticky" : "relative",
+    top: 0,
     display: "flex",
     zIndex: 2,
     justifyContent: "space-between",

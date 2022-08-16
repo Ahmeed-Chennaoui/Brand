@@ -2,10 +2,8 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, useMediaQuery } from "@mui/material";
 import Hero from "../assets/hero.jpg";
-import Searchbar from "./Searchbar";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import { Box } from "@mui/system";
 import { useTheme } from "@emotion/react";
 import { useRef } from "react";
 import Nav from "./Nav";
@@ -21,44 +19,7 @@ const HeroContainer = styled("div")(({ theme }) => ({
     height: "50vh",
   },
 }));
-const HeroNav = styled(Box, { shouldForwardProp: (prop) => prop !== "fixed" })(
-  ({ theme, fixed }) => ({
-    position: fixed ? "fixed" : "relative",
-    display: "flex",
-    zIndex: 2,
-    justifyContent: "space-between",
-    height: "75px",
-    width: "100%",
-    paddingRight: "3vw",
-    paddingLeft: "3vw",
-    color: "white",
-    backgroundColor: fixed ? "#FFFFFF" : "none",
-    borderBottom: fixed ? "1px rgba(0,0,0,.5) solid" : "none",
-    alignItems: "center",
-    transition: theme.transitions.create(["all"]),
 
-    ".MuiFilledInput-root": {
-      width: "30vw",
-    },
-    "& .logo": {
-      color: "#6439ff",
-    },
-    "& .MuiButton-outlined": {
-      borderWidth: "2px",
-    },
-    [theme.breakpoints.down("md")]: {
-      "& .logo": {
-        fontSize: "calc(30vw/4)",
-      },
-      "& .connection": {
-        display: "none",
-      },
-      ".MuiFilledInput-root": {
-        width: "70vw",
-      },
-    },
-  })
-);
 const BrandMotto = styled("div")(({ theme }) => ({
   display: "flex",
   paddingLeft: "3vw",
@@ -122,7 +83,9 @@ const BrandMottoMobile = ({ marginBot, setMarginBot }) => {
 };
 
 function BrandHero() {
+  //++ this is only to test responisveness ++
   const [marginBot, setMarginBot] = useState(0);
+  //++++++++++++++++++++++++++++++++++++++++++++
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
   const [fixedNavbar, setFixedNavbar] = useState(false);
