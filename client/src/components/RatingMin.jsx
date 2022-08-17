@@ -12,8 +12,7 @@ const labels = {
 function getLabelText(value) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
-function RatingMin() {
-  const [value, setValue] = useState(3);
+function RatingMin({minrating,handleChange}) {
   const [hover, setHover] = useState(-1);
   return (
     <Box
@@ -24,19 +23,17 @@ function RatingMin() {
       }}
     >
       <Rating
-        value={value}
+        value={minrating}
         precision={1}
         getLabelText={getLabelText}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
+        onChange={handleChange}
         onChangeActive={(event, newHover) => {
           setHover(newHover);
         }}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
 
-      <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+      <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : minrating]}</Box>
     </Box>
   );
 }

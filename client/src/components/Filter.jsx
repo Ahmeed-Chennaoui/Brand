@@ -32,7 +32,9 @@ function Filter({handleChange,handleInputChange,submitHandler,categories,villes,
           <Typography variant="subtitle1">Filter by Rating</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <RatingMin />
+          <RatingMin 
+          minrating={filtre.minrating}
+          handleChange={handleChange("minrating")} />
         </AccordionDetails>
       </Accordion>
       <ChipSelect

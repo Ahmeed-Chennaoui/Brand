@@ -14,10 +14,10 @@ allAnnonce.forEach((annonce) => availablevilles.add(annonce.locations.ville));
 
 function Search() {
   const [annonce, setannonce] = useState([...allAnnonce]);
-  const [filtre, setFiltre] = useState({ville:"",categorie:"",order:"",pricerange:[0,1000]});
+  const [filtre, setFiltre] = useState({ville:"",categorie:"",order:"",pricerange:[0,1000],minrating:3});
   const handleChange = (n : string) =>
-  (event: SelectChangeEvent, newValue=[0,1000]) =>{
-  if (n!=="pricerange") return setFiltre({...filtre,[n]: event.target.value});
+  (event: SelectChangeEvent, newValue) =>{
+  if (n!=="pricerange" || n!=="minrating") return setFiltre({...filtre,[n]: event.target.value});
   setFiltre({...filtre,[n]:newValue});
   };
   const handleInput = (event) => {
@@ -62,7 +62,10 @@ function Search() {
       ((filtre.pricerange[0] <= +item.price.match(/\d+/g)) 
       && (+item.price.match(/\d+/g) <= filtre.pricerange[1]))
     )
-    
+    &&
+    (
+      (filtre.minrating <= +item.rating)
+    )
     ));
     
   };
