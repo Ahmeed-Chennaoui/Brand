@@ -18,7 +18,17 @@
         box-sizing: border-box;
       }
       ::-webkit-scrollbar {
-        display: none;
+        width: "1px";
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
       }
     </style>
     <title>React App</title>
