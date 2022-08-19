@@ -29,7 +29,7 @@ export default function Footer() {
   return (
   <>
   <center><div className="styledfooter">
-      <h2 className="brand">Brand</h2>
+      <h1 className="brand">Brand</h1>
       <center><table>
               <th className="first">
                 <table >
