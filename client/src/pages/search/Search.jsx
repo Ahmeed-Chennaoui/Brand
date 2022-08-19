@@ -7,7 +7,7 @@ import SearchResults from "../../components/SearchResults";
 function Search() {
   return (
     <div>
-      <Nav fixedNavbar={true} />
+      <Nav />
       <Box
         sx={{
           display: "flex",
