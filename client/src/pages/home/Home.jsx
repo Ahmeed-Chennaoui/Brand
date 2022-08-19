@@ -5,7 +5,6 @@ import BrandValues from '../../components/BrandValues'
 import Footer from "../footer/Footer"
 
 
-
 function Home() {
   return (
     <div>
