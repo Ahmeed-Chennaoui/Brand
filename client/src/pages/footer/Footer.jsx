@@ -1,25 +1,26 @@
 import { Icon } from "@iconify/react";
+import { FaTwitter, FaFacebook, FaLinkedin } from 'react-icons/fa'
 import "./Footer.scss"
 
 function SocialIcons() {
   return (
-    <>
+    <div className="icons">
      <li>
         <a href='https://twitter.com'>
-        <Icon icon="icon-park:twitter"></Icon>
+          <FaTwitter />
         </a>
       </li>
       <li>
         <a href='https://facebook.com'>
-        <Icon icon="logos:facebook"></Icon>
+          <FaFacebook />
         </a>
       </li>
       <li>
         <a href='https://linkedin.com'>
-        <Icon icon="logos:linkedin-icon"></Icon>
+          <FaLinkedin />
         </a>
       </li>
-    </>
+      </div>
       
   )
 }
@@ -27,41 +28,36 @@ function SocialIcons() {
 
 export default function Footer() {
   return (
-  <>
-  <center><div className="styledfooter">
-      <h1 className="brand">Brand</h1>
-      <center><table>
-              <th className="first">
-                <table >
-                    <tr >
-                       Ce site permet d'offrir des services quotidiens et faciliter la vie.
-                    </tr>
-                    <tr>+216 52 902 018</tr>
-                    <tr>perfecto@Brand.com</tr>
-                 </table>
-              </th>
-              <th className="second">
-                <table >
-                    <tr>  About Us </tr>
-                    <tr>What We Do</tr>
-                    <tr>FAQ</tr>
-                 </table>
-              </th>
-              <th className="thrid">
-                <table>
-                    <tr> Career </tr>
-                    <tr>Blog</tr>
-                    <tr>Contact Us</tr>
-                 </table>
-              </th>
-              <th>
-                  <SocialIcons />
-                  <p>&copy; 2022 Brand. All rights reserved</p>
-              </th>
-      </table>
-      </center>
-   </div></center>
-  </>
+    <div className="styledfooter">
+      <div className='Container'>
+        <h2>Brand</h2><br/>
+
+        <div className="Flex">
+          <ul className="first">
+            <li>
+              Ce site permet d'offrir des services quotidiens et faciliter la vie.
+            </li>
+            <li>+216 52 902 018</li>
+            <li>perfecto@Brand.com</li><br/>
+          </ul>
+          <ul className="second">
+            <li>About Us</li><br/>
+            <li>What We Do</li><br/>
+            <li>FAQ</li>
+          </ul>
+
+          <ul className="third">
+            <li>Career</li><br/>
+            <li>Blog</li><br/>
+            <li>Contact Us</li>
+          </ul>
+
+          <div className="fourth"> <SocialIcons /> </div>
+        </div>
+         <br/>
+        <p className="copy">&copy; 2022 Brand. All rights reserved</p>
+      </div>
+   </div>
         
   )
 }

@@ -17,7 +17,7 @@ function WorkerCard() {
       <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
         <Avatar sx={{ width: 48, height: 48, mr: 1 }} />
         <div>
-          <Typography variant="body1">Ahmed Chennaoui</Typography>
+          <Typography variant="body1">Karim Hmidi</Typography>
           <Typography variant="caption">Software Developer</Typography>
         </div>
       </Box>
