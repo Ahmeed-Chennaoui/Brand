@@ -30,15 +30,14 @@ export default function Footer() {
   return (
     <div className="styledfooter">
       <div className='Container'>
-        <h2>Brand</h2><br/>
-
+        <br/><br/><h2 className="brand">Brand</h2><br/>
         <div className="Flex">
           <ul className="first">
             <li>
               Ce site permet d'offrir des services quotidiens et faciliter la vie.
-            </li>
-            <li>+216 52 902 018</li>
-            <li>perfecto@Brand.com</li><br/>
+            </li><br/><br/>
+            <li>+216 52 902 018</li><br/><br/>
+            <li>perfecto@Brand.com</li>
           </ul>
           <ul className="second">
             <li>About Us</li><br/>
