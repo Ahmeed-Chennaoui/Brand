@@ -18,6 +18,7 @@ function ProfileMenu({ demoUser }) {
   const handleClose = () => {
     setAnchorElement(null);
   };
+
   return (
     <>
       <IconButton
@@ -84,7 +85,7 @@ function ProfileMenu({ demoUser }) {
         <MenuItem>Settings</MenuItem>
         <Divider sx={{ borderStyle: "dashed" }} />
 
-        <MenuItem>Logout</MenuItem>
+        <MenuItem >Logout</MenuItem>
       </Menu>
     </>
   );

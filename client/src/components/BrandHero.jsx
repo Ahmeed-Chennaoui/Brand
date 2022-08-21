@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@emotion/react";
 import { useRef } from "react";
 import Nav from "./Nav";
-
+import SearchIcon from '@mui/icons-material/Search';
 const HeroContainer = styled("div")(({ theme }) => ({
   backgroundImage: `url(${Hero})`,
   backgroundSize: "cover",

@@ -6,20 +6,36 @@ import { useContext } from "react";
 import { GlobalContext } from "../contexts/globalContext";
 import ProfileMenu from "./ProfileMenu";
 import NotificationMenu from "./NotificationMenu";
-
+import PageviewIcon from '@mui/icons-material/Pageview';
+import HomeIcon from '@mui/icons-material/Home';
 const demoUser = {
-  name: "Ahmed Chennaoui",
-  email: "ahmed.chenneoui@ensi-uma.tn",
+  name: "Karim Hmidi",
+  email: "karim.hmidi@ensi-uma.tn",
 };
 
 function Nav({ fixedNavbar }) {
   const { loggedIn, setLoggedIn } = useContext(GlobalContext);
   return (
     <HeroNav fixed={fixedNavbar}>
-      <Typography variant="h2" className="logo" fontWeight="bold">
-        Brand
-      </Typography>
-      <Searchbar fixedNavbar={fixedNavbar} />
+      <table>
+        <tr>
+          <th><a href="http://localhost:5000/"><HomeIcon sx={{ color: "blue" }}/></a></th>
+          <th>
+              <Typography variant="h2" className="logo" fontWeight="bold">
+                Brand
+              </Typography>
+          </th>
+        </tr>
+      </table>
+      
+      <div style={{marginLeft:"15%"}}>
+      <table>
+        <tr>
+          <th style={{size:"large"}}><a href="http://localhost:5000/search"><PageviewIcon sx={{ color: "white" }}/></a></th>
+          <th><Searchbar fixedNavbar={fixedNavbar} /></th>
+        </tr>
+      </table>
+      </div>
       {!loggedIn && (
         <div className="connection">
           <Button
@@ -46,7 +62,7 @@ function Nav({ fixedNavbar }) {
           }}
         >
           <NotificationMenu />
-          <ProfileMenu demoUser={demoUser} />
+          <ProfileMenu demoUser={demoUser}   />
         </div>
       )}
     </HeroNav>
