@@ -19,7 +19,7 @@ function Nav({ fixedNavbar }) {
     <HeroNav fixed={fixedNavbar}>
       <table>
         <tr>
-          <th><a href="http://localhost:5000/"><HomeIcon sx={{ color: "blue" }}/></a></th>
+          <th><a href="http://localhost:5000/"><HomeIcon sx={{ color: "brown" }}/></a></th>
           <th>
               <Typography variant="h2" className="logo" fontWeight="bold">
                 Brand
@@ -31,7 +31,7 @@ function Nav({ fixedNavbar }) {
       <div style={{marginLeft:"15%"}}>
       <table>
         <tr>
-          <th style={{size:"large"}}><a href="http://localhost:5000/search"><PageviewIcon sx={{ color: "white" }}/></a></th>
+          <th style={{size:"large"}}><a href="http://localhost:5000/search"><PageviewIcon sx={{ color: "brown" }}/></a></th>
           <th><Searchbar fixedNavbar={fixedNavbar} /></th>
         </tr>
       </table>
