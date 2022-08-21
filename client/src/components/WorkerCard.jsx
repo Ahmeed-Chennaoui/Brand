@@ -49,9 +49,11 @@ function WorkerCard() {
           </Typography>
         </div>
 
-        <Button variant="outlined" color="primary">
-          Get in Touch
-        </Button>
+        <a href="http://localhost:5000/user">
+           <Button variant="outlined" color="primary">
+             Get in Touch
+           </Button>
+        </a>
       </div>
     </CardContainer>
   );

@@ -2,6 +2,7 @@ import * as React from "react";
 import Admin from "./pages/admin/Admin";
 import Home from "./pages/home/Home";
 import Search from "./pages/search/Search";
+import User from "./pages/user/user";
 import { Routes, Route } from "react-router-dom";
 import { GlobalContext } from "./contexts/globalContext";
 import { useState } from "react";
@@ -14,6 +15,7 @@ function App() {
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </GlobalContext.Provider>
   );
