@@ -1,13 +1,14 @@
-const router = require("express").Router();
+const authRouter = require("express").Router();
 const passport = require("passport");
 
-router.get(
+authRouter.get(
   "/auth/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
   })
 );
-router.get(
+
+authRouter.get(
   "/auth/google/callback",
   // after authenticate verifycallback() is called in passport-setup
   passport.authenticate("google", {
@@ -19,11 +20,12 @@ router.get(
     res.send(req.user);
   }
 );
-router.get("/logout", (req, res) => {
+
+authRouter.get("/logout", (req, res) => {
   req.logOut();
   res.redirect("/");
 });
 
 module.exports = {
-  router,
+  authRouter,
 };

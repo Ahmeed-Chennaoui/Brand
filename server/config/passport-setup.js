@@ -1,6 +1,25 @@
 const passport = require("passport");
-const { Strategy } = require("passport-google-oauth20");
-const User = require("../models/user-model");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const { User } = require("../models/user-model");
+
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
+  done(null, user);
+});
+
+passport.use(
+  new GoogleStrategy(
+    {
+      callbackURL: "/auth/google/callback",
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    },
+    verifyCallback
+  )
+);
 
 async function verifyCallback(accessToken, refreshToken, profile, done) {
   //   console.log("google profile : ", profile);
@@ -22,22 +41,3 @@ async function verifyCallback(accessToken, refreshToken, profile, done) {
     console.log(`Welcome back ${profile.displayName} !`);
   }
 }
-passport.serializeUser((user, done) => {
-  done(null, user._id);
-});
-passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id);
-  done(null, user);
-});
-const config = {
-  CLIENT_ID: process.env.CLIENT_ID,
-  CLIENT_SECRET: process.env.CLIENT_SECRET,
-  COOKIE_KEY: process.env.COOKIE_KEY,
-};
-const AUTH_OPTIONS = {
-  callbackURL: "/auth/google/callback",
-  clientID: config.CLIENT_ID,
-  clientSecret: config.CLIENT_SECRET,
-};
-
-passport.use(new Strategy(AUTH_OPTIONS, verifyCallback));

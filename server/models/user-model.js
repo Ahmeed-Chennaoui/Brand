@@ -12,4 +12,21 @@ const userSchema = new Schema({
 
 const User = mongoose.model("user", userSchema);
 
-module.exports = User;
+const createUser = async (user) => {
+  const existingUser = await User.findOne({ email: user.email });
+  if (!existingUser) {
+    const newUser = new User({
+      username: user.userName,
+      name: user.givenName,
+      familyName: user.familyName,
+      picture: user.photo,
+      email: user.email,
+    });
+    console.log(newUser);
+    await newUser.save();
+  } else {
+    console.log(`Welcome back ${existingUser.userName} !`);
+  }
+};
+
+module.exports = { User, createUser };
