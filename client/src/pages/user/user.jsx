@@ -23,7 +23,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 //image list
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-
+import {useState} from 'react';
 function StandardImageList() {
   return (
     <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
@@ -93,13 +93,17 @@ const itemData = [
 ];
 
 //
+
+  
 function NestedList() {
   const [open, setOpen] = React.useState(true);
-
+  const [isShown, setIsShown] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
-
+  const handleClicke = event => {
+    setIsShown(!isShown);
+  };
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -118,7 +122,7 @@ function NestedList() {
         <ListItemText primary="Sent mail" />
       </ListItemButton>
       
-      <ListItemButton onClick={()=>{return(<StandardImageList/>)}} >
+      <ListItemButton onClick={handleClicke}>
       <ListItemAvatar >
           <Avatar>
             <ImageIcon />
@@ -126,7 +130,10 @@ function NestedList() {
         </ListItemAvatar>
         <ListItemText primary="Photos" secondary="Jan 9, 2014" />
       </ListItemButton>
-      
+      <div className='imagelist'>
+        {/* 👇️ show component on click */}
+        {isShown && <StandardImageList/>}
+      </div>
       <ListItemButton onClick={handleClick}>
         <ListItemAvatar>
           <Avatar>
@@ -198,7 +205,7 @@ function User() {
        <Profile/>
        <table>
         <tr>
-          <th><NestedList/></th>
+          <th width="40%"><NestedList/></th>
           <th>  
                <center><table>
                    <tr>
