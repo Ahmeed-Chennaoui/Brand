@@ -8,6 +8,9 @@ import ProfileMenu from "./ProfileMenu";
 import NotificationMenu from "./NotificationMenu";
 import PageviewIcon from '@mui/icons-material/Pageview';
 import HomeIcon from '@mui/icons-material/Home';
+import "./Nav.scss"
+import {useNavigate} from 'react-router-dom';
+
 const demoUser = {
   name: "Karim Hmidi",
   email: "karim.hmidi@ensi-uma.tn",
@@ -15,15 +18,25 @@ const demoUser = {
 
 function Nav({ fixedNavbar }) {
   const { loggedIn, setLoggedIn } = useContext(GlobalContext);
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      console.log('enter press here! ')
+    }
+  }
+  const navigate = useNavigate();
+  const navigatesearch = () => {
+    // 👇️ navigate to /
+    navigate('/search');
+  };
   return (
     <HeroNav fixed={fixedNavbar}>
       <table>
         <tr>
-          <th><a href="http://localhost:5000/"><HomeIcon sx={{ color: "brown" }}/></a></th>
-          <th>
-              <Typography variant="h2" className="logo" fontWeight="bold">
+          
+          <th><a href="http://localhost:5000/">
+              <Typography variant="h2" className="logo" fontWeight="bold" onKeyPress={handleKeyPress}>
                 Brand
-              </Typography>
+              </Typography></a>
           </th>
         </tr>
       </table>
@@ -32,7 +45,7 @@ function Nav({ fixedNavbar }) {
       <table>
         <tr>
           <th style={{size:"large"}}><a href="http://localhost:5000/search"><PageviewIcon sx={{ color: "brown" }}/></a></th>
-          <th><Searchbar fixedNavbar={fixedNavbar} /></th>
+          <th><Searchbar fixedNavbar={fixedNavbar} onKeyPress={e => e.key === 'Enter' &&navigatesearch}/></th>
         </tr>
       </table>
       </div>
