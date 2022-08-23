@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import Filter from "../../components/Filter";
 import SortResults from "../../components/SortResults";
 import SearchResults from "../../components/SearchResults";
+import Footer from "../../components/Footer";
 function Search() {
   return (
     <div>
@@ -22,6 +23,7 @@ function Search() {
           <SearchResults />
         </div>
       </Box>
+      <Footer />
     </div>
   );
 }
