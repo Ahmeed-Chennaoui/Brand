@@ -24,9 +24,11 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import {useState} from 'react';
+import RatingMin from "./RatingMin";
+import "./user.scss"
 function StandardImageList() {
   return (
-    <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+    <ImageList sx={{ width: 600, height: 500 }} cols={3} rowHeight={164}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
@@ -94,17 +96,30 @@ const itemData = [
 
 //
 
-  
+
 function NestedList() {
   const [open, setOpen] = React.useState(true);
-  const [isShown, setIsShown] = useState(false);
+  const [photoisShown, setphotoIsShown] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
   const handleClicke = event => {
-    setIsShown(!isShown);
+    setphotoIsShown(!photoisShown);
+  };
+  const [workisShown, setworkIsShown] = useState(false);
+  const handleClickee = event => {
+    setworkIsShown(!workisShown);
+  };
+  const [rateisShown, setrateIsShown] = useState(false);
+  const handleClickeee = event => {
+    setrateIsShown(!rateisShown);
+  };
+  const [mailisShown, setmailIsShown] = useState(false);
+  const handleClic = event => {
+    setmailIsShown(!mailisShown);
   };
   return (
+    <div>
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       component="nav"
@@ -115,11 +130,12 @@ function NestedList() {
         </ListSubheader>
       }
     >
-      <ListItemButton>
+      <ListItemButton onClick={handleClic}>
         <ListItemIcon>
           <SendIcon />
         </ListItemIcon>
         <ListItemText primary="Sent mail" />
+        {mailisShown && <a href="mailto:max.karimhmidi@example.com?body=My custom mail body">E-Mail to Karim Hmidi</a>}
       </ListItemButton>
       
       <ListItemButton onClick={handleClicke}>
@@ -131,16 +147,17 @@ function NestedList() {
         <ListItemText primary="Photos" secondary="Jan 9, 2014" />
       </ListItemButton>
       <div className='imagelist'>
-        {/* 👇️ show component on click */}
-        {isShown && <StandardImageList/>}
+         {photoisShown && <StandardImageList/>}
+         
       </div>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick && handleClickee}>
         <ListItemAvatar>
           <Avatar>
             <WorkIcon />
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary="Work" secondary="Jan 7, 2014" />
+        {workisShown && <p>Available in 5 days</p>}
       </ListItemButton>
       
       <ListItemButton >
@@ -154,15 +171,37 @@ function NestedList() {
 
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" >
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton sx={{ pl: 4 }} onClick={handleClickeee}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="Starred" />
+            <ListItemText primary="Rate the job" />
           </ListItemButton>
+          <center>{rateisShown && <RatingMin />}</center>
         </List>
       </Collapse>
     </List>
+    {!photoisShown &&<div className='right'>
+               <table>
+                   <tr >
+                       <h2>Profession :  </h2>
+                       <p>Engineer</p>
+                   </tr>
+                   
+                     </table>
+                         <br/><hr></hr><br/>
+                         <table>
+                            <tr>
+                              <h2>Desciption:</h2>
+                            </tr>
+                            <tr>
+                               <pre><p>Développer, intégrer et actualiser les logiciels adaptés à l'organisation de l'entreprise,<br/>
+                                mais aussi assurer la maintenance du système. <br/>
+                               On les trouve dans les entreprises et dans les sociétés de services informatiques (SSII)</p></pre>
+                            </tr>
+                          </table>
+    </div> }
+ </div>
   );
 }
 
@@ -203,29 +242,9 @@ function User() {
       <Nav/>
     <div className='user_container'>
        <Profile/>
-       <table>
-        <tr>
-          <th width="40%"><NestedList/></th>
-          <th>  
-               <center><table>
-                   <tr>
-                       <th><h2>Profession :  </h2></th>
-                   </tr>
-                   <tr><center><p>Engineer</p></center></tr>
-               </table></center>
-               <br/><hr></hr><br/>
-               <table>
-                   <tr>
-                       <h2>Desciption</h2>
-                  </tr>
-                  <tr>
-                     <p>Développer, intégrer et actualiser les logiciels adaptés à l'organisation de l'entreprise, mais aussi assurer la maintenance du système. On les trouve dans les entreprises et dans les sociétés de services informatiques (SSII)</p>
-                  </tr>
-               </table>
-               
-          </th>
-        </tr>
-       </table>
+       <div className='left'><NestedList/></div>
+          
+          
      </div>
     </>
   )

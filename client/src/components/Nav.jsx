@@ -7,7 +7,6 @@ import { GlobalContext } from "../contexts/globalContext";
 import ProfileMenu from "./ProfileMenu";
 import NotificationMenu from "./NotificationMenu";
 import PageviewIcon from '@mui/icons-material/Pageview';
-import HomeIcon from '@mui/icons-material/Home';
 import "./Nav.scss"
 import {useNavigate} from 'react-router-dom';
 
@@ -18,14 +17,13 @@ const demoUser = {
 
 function Nav({ fixedNavbar }) {
   const { loggedIn, setLoggedIn } = useContext(GlobalContext);
-  const handleKeyPress = (event) => {
-    if(event.key === 'Enter'){
-      console.log('enter press here! ')
+  const handleKeyPress = e => {
+    if(e.keyCode === 13){
+      alert('enter press here! ')
     }
   }
   const navigate = useNavigate();
   const navigatesearch = () => {
-    // 👇️ navigate to /
     navigate('/search');
   };
   return (
