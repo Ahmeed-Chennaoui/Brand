@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, useMediaQuery } from "@mui/material";
-import Hero from "../assets/hero.jpg";
+import Hero from "../assets/iron.jpg";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useTheme } from "@emotion/react";
