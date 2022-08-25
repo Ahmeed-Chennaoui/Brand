@@ -63,6 +63,7 @@ const FooterContainer = styled(Box)(({ theme }) => ({
   minHeight: "40vh",
   width: "100vw",
   fontSsize: "large",
+  marginTop: "20vh",
   padding: "2.5vw 2.5vw 0vw 2.5vw ",
   [theme.breakpoints.down("md")]: {
     display: "flex",

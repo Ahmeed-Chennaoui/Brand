@@ -1,134 +1,111 @@
-import React, { useEffect, useRef } from "react";
-import jwt_decode from "jwt-decode";
-import { useContext } from "react";
+import React, { useState, useContext } from "react";
+import CreateAccount from "./components/CreateAccount";
+import WelcomeText from "../../components/WelcomeText";
+import Password from "../../components/Password";
+import GoogleSignin from "./components/GoogleSignin";
 import { GlobalContext } from "../../contexts/globalContext";
 import { isEmpty } from "../../utils/isEmpty";
 import backend from "../../APIs/backend";
-import styled from "@emotion/styled";
 import {
+  Alert,
   Button,
   ButtonBase,
-  Container,
   Divider,
   TextField,
   Typography,
 } from "@mui/material";
-import Password from "../../components/Password";
 import { Navigate } from "react-router-dom";
-import { Box } from "@mui/system";
-function Login() {
-  const googleButtonRef = useRef();
-  const { currentUser, setCurrentUser } = useContext(GlobalContext);
+import CenterContainer from "../../components/CenterContainer";
 
-  const onGoogleSignIn = async (user) => {
-    let userCred = user.credential;
-    let payload = jwt_decode(userCred);
-    console.log(payload);
-    const data = {
-      email: payload.email,
-      givenName: payload.given_name,
-      familyName: payload.family_name,
-      userName: payload.name,
-      photo: payload.picture,
-    };
-    await backend.post("/user", data);
-    setCurrentUser(data);
+function Login() {
+  const { currentUser, setCurrentUser } = useContext(GlobalContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (event, setter) => {
+    if (setter === "email") setEmail(event.target.value);
+    else setPassword(event.target.value);
   };
-  useEffect(() => {
-    window.google.accounts.id.initialize({
-      client_id:
-        "91825127591-2sft5p6qggg3780heuug6oet2m6aa1er.apps.googleusercontent.com",
-      callback: onGoogleSignIn,
-      login_uri: "http://localhost:3000",
-      auto_select: false,
-    });
-    window.google.accounts.id.renderButton(googleButtonRef.current, {
-      size: "large",
-    });
-  }, []);
+
+  const handleSubmit = async () => {
+    try {
+      const loginData = {
+        email: email,
+        password: password,
+      };
+      const response = await backend.post("/auth/login", loginData);
+      if (response.data.error) {
+        setError(response.data.error);
+      } else {
+        const response = await backend.get(`/user/${email}`);
+        setCurrentUser(response.data);
+      }
+    } catch {
+      setError("Problem connecting to server . Try again later");
+    }
+  };
+
   return (
-    <Container
-      sx={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <TextContainer>
-        <Typography style={{ ...titleStyle }}>Welcome to </Typography>
-        <Typography
-          style={{ ...titleStyle, color: "#6439ff", marginLeft: "10px" }}
-        >
-          Brand
-        </Typography>
-      </TextContainer>
+    <CenterContainer sx={{ height: "100vh" }}>
+      <WelcomeText />
 
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <TextField sx={fieldSX} label="email" />
-        <Password sx={fieldSX} />
+        <TextField
+          sx={fieldSX}
+          label="email"
+          value={email}
+          onChange={(e) => handleChange(e, "email")}
+        />
+        <Password
+          sx={fieldSX}
+          value={password}
+          onChange={(e) => handleChange(e, "password")}
+        />
+
         <ButtonBase style={{ width: "25ch" }}>
           <Typography style={forgotPasswordStyle}>Forgot password ?</Typography>
         </ButtonBase>
+
+        {error && (
+          <Alert severity="error" sx={{ my: "10px" }}>
+            {error}
+          </Alert>
+        )}
       </div>
 
-      <Button sx={fieldSX} variant="contained">
+      <Button
+        disabled={!(password && email)}
+        sx={fieldSX}
+        variant="contained"
+        onClick={handleSubmit}
+      >
         Log In
       </Button>
-      <Typography
-        style={{
-          color: "#404040",
-          fontWeight: "bold",
-          fontSize: "1.35em",
-          marginBottom: "10px",
-        }}
-      >
-        - OR -
-      </Typography>
+      <Typography>- OR -</Typography>
 
-      <div ref={googleButtonRef}></div>
+      <GoogleSignin />
 
       <div style={{ ...fieldSX, textAlign: "center", marginTop: "20px" }}>
         <Typography style={{ color: "rgb(120,120,120)" }}>
           By continuing, you agree to Brand's Terms of service and Privacy
           policy
         </Typography>
+
         <Divider sx={{ m: 3 }} />
-        <TextContainer style={{ fontSize: "50px" }}>
-          <Typography>Not on</Typography>
-          <Typography sx={{ color: "#6439ff", mx: "5px", fontWeight: "bold" }}>
-            Brand
-          </Typography>
-          <Typography>?</Typography>
-          <ButtonBase sx={{ ml: 1 }}>
-            <Typography style={{ textDecoration: "underline" }}>
-              Create an account
-            </Typography>
-          </ButtonBase>
-          <Typography></Typography>
-        </TextContainer>
+
+        <CreateAccount />
       </div>
 
       {!isEmpty(currentUser) && <Navigate to="/" replace={true} />}
-    </Container>
+    </CenterContainer>
   );
 }
 
 export default Login;
+
 const fieldSX = { m: 1, width: "50ch" };
 const forgotPasswordStyle = {
   paddingInline: "10px",
   paddingBlock: "5px",
 };
-const titleStyle = {
-  color: "#404040",
-  fontWeight: "bold",
-  fontSize: "2em",
-  marginBottom: "50px",
-};
-const TextContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  width: "100%",
-}));

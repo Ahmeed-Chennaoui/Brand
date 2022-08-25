@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 function Search() {
   return (
     <div>
-      <Nav />
+      <Nav sticky={true} />
       <Box
         sx={{
           display: "flex",
