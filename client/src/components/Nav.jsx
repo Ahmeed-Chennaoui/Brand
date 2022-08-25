@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../contexts/globalContext";
 import ProfileMenu from "./ProfileMenu";
 import NotificationMenu from "./NotificationMenu";
+
 import PageviewIcon from '@mui/icons-material/Pageview';
 import "./Nav.scss"
 import {useNavigate} from 'react-router-dom';
@@ -48,13 +49,28 @@ function Nav({ fixedNavbar }) {
       </table>
       </div>
       {!loggedIn && (
+
+import { isEmpty } from "../utils/isEmpty";
+import { useNavigate } from "react-router-dom";
+
+function Nav({ fixedNavbar }) {
+  let navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useContext(GlobalContext);
+  return (
+    <HeroNav fixed={fixedNavbar}>
+      <Typography variant="h2" className="logo" fontWeight="bold">
+        Brand
+      </Typography>
+      <Searchbar fixedNavbar={fixedNavbar} />
+      {isEmpty(currentUser) && (
+
         <div className="connection">
           <Button
             variant="outlined"
             color="info"
             sx={{ fontWeight: "bold" }}
             size="large"
-            onClick={() => setLoggedIn(true)}
+            onClick={() => navigate("/login")}
           >
             Login
           </Button>
@@ -63,7 +79,7 @@ function Nav({ fixedNavbar }) {
           </Button>
         </div>
       )}
-      {loggedIn && (
+      {!isEmpty(currentUser) && (
         <div
           style={{
             minWidth: "125px",
@@ -73,7 +89,11 @@ function Nav({ fixedNavbar }) {
           }}
         >
           <NotificationMenu />
+
           <ProfileMenu demoUser={demoUser}   />
+
+          <ProfileMenu />
+
         </div>
       )}
     </HeroNav>

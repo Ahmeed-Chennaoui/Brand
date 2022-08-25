@@ -3,19 +3,24 @@ import Admin from "./pages/admin/Admin";
 import Home from "./pages/home/Home";
 import Search from "./pages/search/Search";
 import User from "./pages/user/user";
+import Login from "./pages/login/Login";
 import { Routes, Route } from "react-router-dom";
 import { GlobalContext } from "./contexts/globalContext";
 import { useState } from "react";
  
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   return (
-    <GlobalContext.Provider value={{ loggedIn, setLoggedIn }}>
+    <GlobalContext.Provider value={{ currentUser, setCurrentUser }}>
       <Routes>
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/user" element={<User />} />
+        <Route path="/search" element={<Search /> }/>
+        
+        <Route  path="/user" element={<User />} />
+
+        <Route path="/login" element={<Login />} />
+
       </Routes>
     </GlobalContext.Provider>
   );

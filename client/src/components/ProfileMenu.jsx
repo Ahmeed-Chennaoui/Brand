@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../contexts/globalContext";
 import {
   Avatar,
   Box,
@@ -9,7 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 
-function ProfileMenu({ demoUser }) {
+function ProfileMenu() {
+  const { currentUser, setCurrentUser } = useContext(GlobalContext);
+
   const [anchorElement, setAnchorElement] = useState(null);
   const openAvatar = Boolean(anchorElement);
   const handleClick = (event) => {
@@ -28,7 +31,10 @@ function ProfileMenu({ demoUser }) {
         aria-expanded={openAvatar ? "true" : undefined}
         onClick={handleClick}
       >
-        <Avatar />
+        <Avatar
+          alt={currentUser.userName.toUpperCase()}
+          src={currentUser.photo}
+        />
       </IconButton>
       <Menu
         anchorEl={anchorElement}
@@ -73,10 +79,10 @@ function ProfileMenu({ demoUser }) {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {demoUser.name}
+            {currentUser.userName}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
-            {demoUser.email}
+            {currentUser.email}
           </Typography>
         </Box>
 
@@ -85,7 +91,11 @@ function ProfileMenu({ demoUser }) {
         <MenuItem>Settings</MenuItem>
         <Divider sx={{ borderStyle: "dashed" }} />
 
+
         <MenuItem >Logout</MenuItem>
+
+        <MenuItem onClick={() => setCurrentUser({})}>Logout</MenuItem>
+
       </Menu>
     </>
   );

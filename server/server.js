@@ -3,9 +3,11 @@ const cookieSession = require("cookie-session");
 const express = require("express");
 const helmet = require("helmet");
 const https = require("https");
+const cors = require("cors");
 require("dotenv").config();
 const fs = require("fs");
-const { router } = require("./routes/auth-routes");
+const { authRouter } = require("./routes/auth-routes");
+const { dbRouter } = require("./routes/db-routes");
 const mongoose = require("mongoose");
 const passportSetup = require("./config/passport-setup");
 const { checkLoggedIn } = require("./middlewares/auth");
@@ -15,6 +17,12 @@ const app = express();
 // security features added in the header
 app.use(helmet());
 app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+app.use(express.json());
+app.use(
   cookieSession({
     name: "session",
     keys: [process.env.COOKIE_KEY],
@@ -23,12 +31,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use("/", router);
-
-app.get("/", (req, res) => {
-  return res.send("test");
-});
+app.use("/", authRouter);
+app.use("/", dbRouter);
 
 app.get("/failure", (req, res) => {
   return res.send("failure");
