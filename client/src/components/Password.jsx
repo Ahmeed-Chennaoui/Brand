@@ -9,12 +9,16 @@ import React, { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-function Password({ sx }) {
+function Password({ sx, value, onChange }) {
   const [show, setShow] = useState(false);
   return (
     <FormControl sx={sx} variant="outlined">
       <InputLabel>Password</InputLabel>
       <OutlinedInput
+        onChange={onChange}
+        name="password"
+        value={value}
+        required
         type={show ? "text" : "password"}
         //   value={values.password}
         endAdornment={

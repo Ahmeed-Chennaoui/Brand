@@ -16,19 +16,19 @@ const jobs = [
 ];
 
 const SearchContainer = styled(Autocomplete, {
-  shouldForwardProp: (prop) => prop !== "fixed",
-})(({ theme, fixed }) => ({
+  shouldForwardProp: (prop) => prop !== "fixed" || prop !== "sticky",
+})(({ theme, fixed, sticky }) => ({
   "& .MuiAutocomplete-input": {
-    color: fixed ? "black" : "white",
-    textShadow: fixed ? "none" : "black 0px 0px 2px",
+    color: fixed || sticky ? "black" : "white",
+    textShadow: fixed || sticky ? "none" : "black 0px 0px 2px",
     fontSize: "1.35em",
     transition: theme.transitions.create(["all"], {
       duration: theme.transitions.duration.shortest,
     }),
   },
   "& .MuiInputLabel-filled:not(.MuiInputLabel-shrink)": {
-    color: fixed ? "black" : "white",
-    textShadow: fixed ? "none" : "black 0px 0px 2px",
+    color: fixed || sticky ? "black" : "white",
+    textShadow: fixed || sticky ? "none" : "black 0px 0px 2px",
     fontSize: "26px",
     fontWeight: "300",
     letterSpacing: 1,
@@ -47,10 +47,11 @@ const SearchContainer = styled(Autocomplete, {
     },
   },
 }));
-function Searchbar({ fixedNavbar }) {
+function Searchbar({ fixedNavbar, sticky }) {
   return (
     <SearchContainer
       fixed={fixedNavbar}
+      sticky={sticky}
       freeSolo
       options={jobs.map((job) => job.title)}
       renderInput={(params) => {

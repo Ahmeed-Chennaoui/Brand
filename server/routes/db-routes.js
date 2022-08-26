@@ -1,9 +1,12 @@
 const dbRouter = require("express").Router();
-const { createUser } = require("../models/user-model");
+const { findUser, createUser } = require("../models/user-model");
 
 dbRouter.post("/user", async (req, res) => {
-  await createUser(req.body);
-  res.send(req.body);
+  return await res.json(await createUser(req.body));
+});
+dbRouter.get("/user/:email", async (req, res) => {
+  console.log(req.params.email);
+  res.json(await findUser(req.params.email));
 });
 
 module.exports = {

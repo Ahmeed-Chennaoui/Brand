@@ -4,10 +4,11 @@ import { Box } from "@mui/system";
 import Filter from "../../components/Filter";
 import SortResults from "../../components/SortResults";
 import SearchResults from "../../components/SearchResults";
+import Footer from "../../components/Footer";
 function Search() {
   return (
     <div>
-      <Nav />
+      <Nav sticky={true} />
       <Box
         sx={{
           display: "flex",
@@ -22,6 +23,7 @@ function Search() {
           <SearchResults />
         </div>
       </Box>
+      <Footer />
     </div>
   );
 }
