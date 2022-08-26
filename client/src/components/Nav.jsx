@@ -10,48 +10,17 @@ import NotificationMenu from "./NotificationMenu";
 import PageviewIcon from '@mui/icons-material/Pageview';
 import "./Nav.scss"
 import {useNavigate} from 'react-router-dom';
+import { isEmpty } from "../utils/isEmpty";
 
 const demoUser = {
   name: "Karim Hmidi",
   email: "karim.hmidi@ensi-uma.tn",
 };
 
-function Nav({ fixedNavbar }) {
-  const { loggedIn, setLoggedIn } = useContext(GlobalContext);
-  const handleKeyPress = e => {
-    if(e.keyCode === 13){
-      alert('enter press here! ')
-    }
-  }
-  const navigate = useNavigate();
-  const navigatesearch = () => {
-    navigate('/search');
-  };
-  return (
-    <HeroNav fixed={fixedNavbar}>
-      <table>
-        <tr>
-          
-          <th><a href="http://localhost:5000/">
-              <Typography variant="h2" className="logo" fontWeight="bold" onKeyPress={handleKeyPress}>
-                Brand
-              </Typography></a>
-          </th>
-        </tr>
-      </table>
-      
-      <div style={{marginLeft:"15%"}}>
-      <table>
-        <tr>
-          <th style={{size:"large"}}><a href="http://localhost:5000/search"><PageviewIcon sx={{ color: "brown" }}/></a></th>
-          <th><Searchbar fixedNavbar={fixedNavbar} onKeyPress={e => e.key === 'Enter' &&navigatesearch}/></th>
-        </tr>
-      </table>
-      </div>
-      {!loggedIn && (
 
-import { isEmpty } from "../utils/isEmpty";
-import { useNavigate } from "react-router-dom";
+      {!loggedIn &&
+
+
 
 function Nav({ fixedNavbar }) {
   let navigate = useNavigate();
