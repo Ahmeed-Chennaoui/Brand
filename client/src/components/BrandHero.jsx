@@ -8,6 +8,7 @@ import { useTheme } from "@emotion/react";
 import { useRef } from "react";
 import Nav from "./Nav";
 import SearchIcon from '@mui/icons-material/Search';
+
 const HeroContainer = styled("div")(({ theme }) => ({
   backgroundImage: `url(${Hero})`,
   backgroundSize: "cover",
@@ -71,13 +72,7 @@ const BrandMottoMobile = ({ marginBot, setMarginBot }) => {
         We bring you the best professionals from all fields to match all your
         needs
       </Typography>
-      <Button
-        variant="contained"
-        size="large"
-        sx={{ width: "150px", mt: "20px" }}
-      >
-        Get started
-      </Button>
+      
     </div>
   );
 };
@@ -123,13 +118,7 @@ function BrandHero() {
               We bring you the best professionals from all fields to match all
               your needs
             </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{ width: "15vw", maxWidth: "200px", minWidth: "150px" }}
-            >
-              Get started
-            </Button>
+            
           </div>
         </BrandMotto>
       )}
