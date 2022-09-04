@@ -6,6 +6,7 @@ import BrandValues from "../../components/BrandValues";
 import Footer from "../../components/Footer";
 import { useRef } from 'react'
 import { Button } from "@mui/material";
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import "./home.scss"
 
 function Home() {
@@ -14,16 +15,11 @@ function Home() {
     <div>
 
       <BrandHero />
-      <div className="button" >
-      <Button
-              variant="contained"
-              size="large"
-              sx={{ width: "15vw", maxWidth: "200px", minWidth: "150px" }}
-              onClick={() => firstItemRef.current.scrollIntoView()}
-
-       >
-              Get started
-      </Button>
+      <div
+       className="button" 
+       onClick={() => firstItemRef.current.scrollIntoView()}
+      >
+           <ArrowCircleDownIcon color="disabeled" sx={{ fontSize: 40 }}/>
       </div>
       <BrandValues />
       <div ref={firstItemRef}>
