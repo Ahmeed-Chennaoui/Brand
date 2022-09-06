@@ -11,9 +11,12 @@ const { dbRouter } = require("./routes/db-routes");
 const mongoose = require("mongoose");
 const passportSetup = require("./config/passport-setup");
 const { checkLoggedIn } = require("./middlewares/auth");
+const bodyParser = require('body-parser');
 
 const app = express();
-
+//middlewares
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // security features added in the header
 app.use(helmet());
 app.use(
@@ -41,6 +44,10 @@ app.get("/failure", (req, res) => {
 app.get("/secure", checkLoggedIn, (req, res) => {
   return res.send("secure");
 });
+//posts
+const postsRoute = require ('./routes/posts');
+app.use('/posts', postsRoute);
+
 mongoose.connect(process.env.MONGO_URI, () => {
   console.log("connected to mongoDB");
 });
