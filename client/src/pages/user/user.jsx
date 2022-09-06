@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from '../../components/Nav';
-import { Avatar, Stack, Divider, IconButton,Chip,Switch, Typography } from "@mui/material";
+import { Avatar, Stack, Divider, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Card from '@mui/material/Card';
 
@@ -11,13 +11,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ImageIcon from '@mui/icons-material/Image';
 import SendIcon from '@mui/icons-material/Send';
 import WorkIcon from '@mui/icons-material/Work';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 //image list
