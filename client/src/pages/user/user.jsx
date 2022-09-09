@@ -23,6 +23,8 @@ import ImageListItem from '@mui/material/ImageListItem';
 import {useState} from 'react';
 import RatingMin from "./RatingMin";
 import "./user.scss"
+import backend from "../../APIs/backend";
+const axios = require('axios');
 function StandardImageList() {
   return (
     <ImageList sx={{ width: 600, height: 500 }} cols={3} rowHeight={164}>
@@ -102,6 +104,7 @@ function NestedList() {
   };
   const handleClicke = event => {
     setphotoIsShown(!photoisShown);
+    
   };
   const [workisShown, setworkIsShown] = useState(false);
   const handleClickee = event => {
@@ -115,6 +118,12 @@ function NestedList() {
   const handleClic = event => {
     setmailIsShown(!mailisShown);
   };
+  const [inputs, setInputs] = useState({});
+  const [title, settitle] = useState("");
+  const [description, setdescription] = useState("");
+  const [error, setError] = useState("");
+  
+  
   return (
     <div>
     <List
@@ -178,11 +187,13 @@ function NestedList() {
         </List>
       </Collapse>
     </List>
-    {!photoisShown &&<div className='right'>
+   
+    { 
+    !photoisShown &&<div className='right'>
                <table>
                    <tr >
                        <h2>Profession :  </h2>
-                       <p>Engineer</p>
+                       <p>response.data.title</p>
                    </tr>
                    
                      </table>
@@ -192,9 +203,7 @@ function NestedList() {
                               <h2>Desciption:</h2>
                             </tr>
                             <tr>
-                               <pre><p>Développer, intégrer et actualiser les logiciels adaptés à l'organisation de l'entreprise,<br/>
-                                mais aussi assurer la maintenance du système. <br/>
-                               On les trouve dans les entreprises et dans les sociétés de services informatiques (SSII)</p></pre>
+                               <pre><p>response.data.description</p></pre>
                             </tr>
                           </table>
     </div> }
@@ -203,8 +212,8 @@ function NestedList() {
 }
 
 //
-
 function Profile(){
+  
   return(
     <>
         <Card>

@@ -39,6 +39,15 @@ router.get('/:postId',async(req,res)=>{
         res.json({message : err});
     }
 });
+router.get('/postneeded',async(req,res)=>{
+    try{
+        const post = await Posts.find({email:'hmidi.karim@gmail.com'}).exec();
+        res.json(post);
+    }
+    catch(err){
+        res.json({message : err});
+    }
+});
 //delete post
 router.delete('/:postId',async (req,res)=>{
     try{
