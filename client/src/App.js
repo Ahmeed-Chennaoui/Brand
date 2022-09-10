@@ -8,6 +8,7 @@ import Signup from "./pages/Signup/Signup";
 import { Routes, Route } from "react-router-dom";
 import { GlobalContext } from "./contexts/globalContext";
 import { useState } from "react";
+const axios = require('axios');
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});

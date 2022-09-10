@@ -23,10 +23,8 @@ import ImageListItem from '@mui/material/ImageListItem';
 import {useState} from 'react';
 import RatingMin from "./RatingMin";
 import "./user.scss"
-import axios from "axios";
-const api = axios.create({
-  baseURL:`https://localhost:5000/posts`
-})
+import backend from "../../APIs/backend";
+import axios from "axios"
 function StandardImageList() {
   return (
     <ImageList sx={{ width: 600, height: 500 }} cols={3} rowHeight={164}>
@@ -95,26 +93,21 @@ const itemData = [
   },
 ];
 
-//
-function JibData(){
-  //const baseURL = "https://localhost:5000/posts";
-  const [post, setPost] = React.useState();
-  React.useEffect(() => {
-    api.get('/').then((response) => {
-      setPost(response.data);
-    });
-  }, []);
-  if (!post) return (<h1>fer8a</h1>);
-
-  return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.description}</p>
-    </div>
-  );
-}
-
 function NestedList() {
+  const [title, settitle] = useState("chy");
+  const [des, setdes] = useState("chy");
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.get("https://localhost:5000/posts/63178f1665c3d40d13220e6e");
+      settitle(response.data.title);
+      setdes(response.data.descripton);
+      }
+     catch(err) {
+      alert("Problem connecting to server . Try again later"+err);
+    }
+  };
+
+ 
   const [open, setOpen] = React.useState(true);
   const [photoisShown, setphotoIsShown] = useState(false);
   const handleClick = () => {
@@ -200,24 +193,27 @@ function NestedList() {
         </List>
       </Collapse>
     </List>
-   
+   <button onClick={handleSubmit}>jib data</button>
     { 
-    !photoisShown &&<div className='right'>
+    !photoisShown && <div className='right'>
                <table>
+                <tbody>
                    <tr >
                        <h2>Profession :  </h2>
-                       <p><JibData/></p>
+                       <p>{title}</p>
                    </tr>
-                   
+                   </tbody>
                      </table>
                          <br/><hr></hr><br/>
                          <table>
+                          <tbody>
                             <tr>
                               <h2>Desciption:</h2>
                             </tr>
                             <tr>
-                               <pre><p></p></pre>
+                               <pre><p>{des}</p></pre>
                             </tr>
+                            </tbody>
                           </table>
     </div> }
  </div>
@@ -232,6 +228,7 @@ function Profile(){
         <Card>
   <Box sx={{ p: 2, display: 'flex' }}>
     <table>
+      <tbody>
       <tr>
         <th><Avatar variant="rounded" src="" /></th>
         <th>
@@ -243,6 +240,7 @@ function Profile(){
     </Stack>
         </th>
       </tr>
+      </tbody>
     </table>
     
     

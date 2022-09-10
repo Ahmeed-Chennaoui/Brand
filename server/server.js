@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // security features added in the header
 app.use(helmet());
+
 app.use(
   cors({
     origin: "http://localhost:3000",

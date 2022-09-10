@@ -2,7 +2,7 @@ const express=require('express');
 const router = express.Router();
 const Posts = require('../models/posts')
 // get back posts
-router.get('/', async(req,res)=> {
+router.get('/posts1', async(req,res)=> {
     try {
         const ourposts = await Posts.find();
         res.json(ourposts);

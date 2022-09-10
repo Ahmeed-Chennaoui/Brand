@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import backend from "../../APIs/backend";
 import Snack from "../../components/Snack";
 
+
 function Signup() {
   const [inputs, setInputs] = useState({});
   const [image, setImage] = useState();
