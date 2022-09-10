@@ -34,12 +34,16 @@ function Login() {
         email: email,
         password: password,
       };
-      const response = await backend.post("/auth/login", loginData);
-      if (response.data.error) {
-        setError(response.data.error);
+      const loginResponse = await backend.post("/auth/login", loginData);
+      if (loginResponse.data.error) {
+        setError(loginResponse.data.error);
       } else {
-        const response = await backend.get(`/user/${email}`);
-        setCurrentUser(response.data);
+        const userResponse = await backend.get(`/user/${email}`);
+        const authenticatedUser = {
+          ...userResponse.data,
+          ...loginResponse.data,
+        };
+        setCurrentUser(authenticatedUser);
       }
     } catch {
       setError("Problem connecting to server . Try again later");

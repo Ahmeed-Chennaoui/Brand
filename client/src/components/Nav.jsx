@@ -1,22 +1,55 @@
 import styled from "@emotion/styled";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Drawer, IconButton, Typography } from "@mui/material";
 import React from "react";
 import Searchbar from "./Searchbar";
-import { useContext } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../contexts/globalContext";
 import ProfileMenu from "./ProfileMenu";
 import NotificationMenu from "./NotificationMenu";
 import { isEmpty } from "../utils/isEmpty";
 import { useNavigate } from "react-router-dom";
 
-function Nav({ fixedNavbar, sticky }) {
+function Nav({ fixedNavbar, sticky, drawer }) {
   let navigate = useNavigate();
   const { currentUser } = useContext(GlobalContext);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const handleDrawerClose = (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setOpenDrawer(false);
+  };
   return (
-    <HeroNav fixed={fixedNavbar} sticky={sticky}>
-      <Typography variant="h2" className="logo" fontWeight="bold">
-        Brand
-      </Typography>
+    <Navbar fixed={fixedNavbar} sticky={sticky}>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {drawer && (
+          <>
+            <IconButton
+              edge="start"
+              color="primary"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              onClick={() => setOpenDrawer(true)}
+            >
+              <MenuIcon sx={{ fontSize: 40 }} />
+            </IconButton>
+
+            <Drawer anchor="left" open={openDrawer} onClose={handleDrawerClose}>
+              {drawer}
+            </Drawer>
+          </>
+        )}
+        <div onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+          <Typography variant="h2" className="logo" fontWeight="bold">
+            Brand
+          </Typography>
+        </div>
+      </div>
+
       <Searchbar fixedNavbar={fixedNavbar} sticky={sticky} />
       {isEmpty(currentUser) && (
         <div className="connection">
@@ -51,11 +84,11 @@ function Nav({ fixedNavbar, sticky }) {
           <ProfileMenu />
         </div>
       )}
-    </HeroNav>
+    </Navbar>
   );
 }
 
-const HeroNav = styled(Box, {
+const Navbar = styled(Box, {
   shouldForwardProp: (prop) => prop !== "fixed" || prop !== "sticky",
 })(({ theme, fixed, sticky }) => ({
   position: fixed ? "fixed" : "sticky",

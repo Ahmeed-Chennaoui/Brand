@@ -94,6 +94,7 @@ function Signup() {
       <UploadPhoto
         onChange={handleImageChange}
         imageName={image ? image.name : undefined}
+        label="upload profile picture"
       />
       {message && <Snack message={message} severity="success" />}
       <Button

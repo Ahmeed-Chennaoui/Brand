@@ -8,6 +8,7 @@ require("dotenv").config();
 const fs = require("fs");
 const { authRouter } = require("./routes/auth-routes");
 const { dbRouter } = require("./routes/db-routes");
+const { adminRouter } = require("./routes/admin-routes");
 const mongoose = require("mongoose");
 const passportSetup = require("./config/passport-setup");
 const { checkLoggedIn } = require("./middlewares/auth");
@@ -33,6 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use("/", authRouter);
 app.use("/", dbRouter);
+app.use("/admin", adminRouter);
 
 app.get("/failure", (req, res) => {
   return res.send("failure");

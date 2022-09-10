@@ -9,6 +9,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
+import { isLink } from "../utils/isLink";
 
 function ProfileMenu() {
   const { currentUser, setCurrentUser } = useContext(GlobalContext);
@@ -32,7 +33,12 @@ function ProfileMenu() {
       >
         <Avatar
           alt={currentUser.userName.toUpperCase()}
-          src={currentUser.photo}
+          src={
+            currentUser.photo
+              ? currentUser.photo
+              : process.env.REACT_APP_SERVER_IMAGES + currentUser.picture
+          }
+          imgProps={{ crossOrigin: "anonymous" }}
         />
       </IconButton>
       <Menu

@@ -4,6 +4,7 @@ const {
   register,
   login,
   sendToken,
+  sendRequest,
 } = require("../controllers/auth-controllers");
 const { authenticateToken } = require("../middlewares/auth");
 const { v4: uuidv4 } = require("uuid");
@@ -37,6 +38,12 @@ let upload = multer({ storage, fileFilter });
 authRouter.post("/auth/register", upload.single("photo"), register);
 authRouter.post("/auth/login", login);
 authRouter.post("/auth/google", sendToken);
+authRouter.post(
+  "/auth/request",
+  upload.single("idPhoto"),
+  authenticateToken,
+  sendRequest
+);
 authRouter.get("/test", authenticateToken);
 
 authRouter.get(
