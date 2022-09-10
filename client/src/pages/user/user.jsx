@@ -23,8 +23,10 @@ import ImageListItem from '@mui/material/ImageListItem';
 import {useState} from 'react';
 import RatingMin from "./RatingMin";
 import "./user.scss"
-import backend from "../../APIs/backend";
-const axios = require('axios');
+import axios from "axios";
+const api = axios.create({
+  baseURL:`https://localhost:5000/posts`
+})
 function StandardImageList() {
   return (
     <ImageList sx={{ width: 600, height: 500 }} cols={3} rowHeight={164}>
@@ -94,7 +96,23 @@ const itemData = [
 ];
 
 //
+function JibData(){
+  //const baseURL = "https://localhost:5000/posts";
+  const [post, setPost] = React.useState();
+  React.useEffect(() => {
+    api.get('/').then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+  if (!post) return (<h1>fer8a</h1>);
 
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.description}</p>
+    </div>
+  );
+}
 
 function NestedList() {
   const [open, setOpen] = React.useState(true);
@@ -118,12 +136,7 @@ function NestedList() {
   const handleClic = event => {
     setmailIsShown(!mailisShown);
   };
-  const [inputs, setInputs] = useState({});
-  const [title, settitle] = useState("");
-  const [description, setdescription] = useState("");
-  const [error, setError] = useState("");
-  
-  
+
   return (
     <div>
     <List
@@ -193,7 +206,7 @@ function NestedList() {
                <table>
                    <tr >
                        <h2>Profession :  </h2>
-                       <p>response.data.title</p>
+                       <p><JibData/></p>
                    </tr>
                    
                      </table>
@@ -203,7 +216,7 @@ function NestedList() {
                               <h2>Desciption:</h2>
                             </tr>
                             <tr>
-                               <pre><p>response.data.description</p></pre>
+                               <pre><p></p></pre>
                             </tr>
                           </table>
     </div> }

@@ -9,6 +9,7 @@ router.get('/', async(req,res)=> {
     }
     catch(err){
         res.json({message :err});
+        console.log({message :err});
     }
 });
 // submit a post
