@@ -3,6 +3,7 @@ const {
   findUser,
   createUser,
   getProfessionals,
+  getFilteredUsers,
 } = require("../models/user-model");
 const { authenticateToken } = require("../middlewares/auth");
 const fs = require("fs");
@@ -16,6 +17,22 @@ dbRouter.get("/user/:email", async (req, res) => {
 });
 dbRouter.get("/posts", async (req, res) => {
   res.json(await getProfessionals());
+});
+dbRouter.get("/postsQuery", async (req, res) => {
+  const { minPrice, maxPrice } = req.query;
+  //cannot pass array in query so im using post
+  const filter = {
+    price: {
+      $gt: minPrice ? Number(minPrice) : 0,
+      $lt: maxPrice ? Number(maxPrice) : 9999999,
+    },
+  };
+
+  res.json(await getFilteredUsers(filter));
+});
+dbRouter.post("/postsQuery", async (req, res) => {
+  const filter = req.body;
+  res.json(await getFilteredUsers(filter));
 });
 dbRouter.post("/review/:email", authenticateToken, async (req, res) => {
   try {

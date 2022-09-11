@@ -38,6 +38,14 @@ const getProfessionals = async () => {
   const response = await User.find({ profession: /[\w\W]*/ });
   return response;
 };
+const getFilteredUsers = async (filter) => {
+  try {
+    const response = await User.find(filter);
+    return response;
+  } catch (err) {
+    return { error: "something went wrong " + err };
+  }
+};
 
 const createUser = async (user, method) => {
   const existingUser = await User.findOne({ email: user.email });
@@ -75,8 +83,8 @@ const createUser = async (user, method) => {
 
 module.exports = {
   User,
-  ReviewSchema,
   createUser,
   findUser,
   getProfessionals,
+  getFilteredUsers,
 };

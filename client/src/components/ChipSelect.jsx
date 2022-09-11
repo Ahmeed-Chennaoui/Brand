@@ -5,13 +5,18 @@ function ChipSelect({
   optionsArray,
   label,
   placeholder,
-  onChange,
+  setValue,
   defaultValueIndex,
+  value,
 }) {
+  const handleChange = (event, value) => {
+    setValue(value);
+  };
   return (
     <Autocomplete
       multiple
-      onChange={onChange}
+      onChange={handleChange}
+      value={value}
       options={optionsArray}
       getOptionLabel={(optionsArray) => optionsArray}
       defaultValue={defaultValueIndex ? [optionsArray[defaultValueIndex]] : []}

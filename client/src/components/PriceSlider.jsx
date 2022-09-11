@@ -29,8 +29,7 @@ const PriceField = ({ label, value, onChange }) => (
   />
 );
 
-function PriceSlider({ initial_values }) {
-  const [value, setValue] = useState([0, 200]);
+function PriceSlider({ max, value, setValue }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -44,7 +43,7 @@ function PriceSlider({ initial_values }) {
       <div style={{ width: "80%", margin: "auto" }}>
         <CustomSlider
           value={value}
-          max={initial_values ? initial_values[1] : 1000}
+          max={max ? max : 1000}
           onChange={handleChange}
           valueLabelDisplay="auto"
         />
