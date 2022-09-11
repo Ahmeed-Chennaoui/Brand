@@ -5,15 +5,23 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PriceSlider from "./PriceSlider";
 import ChipSelect from "./ChipSelect";
-import React from "react";
+import React, { useState } from "react";
 import RatingMin from "./RatingMin";
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { jobs, states } from "../data/filterData";
 
 function Filter() {
+  const [filter, setFilter] = useState({});
+  const [value, setValue] = useState(3);
   return (
-    <div style={{ width: "20vw", minHeight: "calc(100vh -100px)" }}>
+    <div
+      style={{
+        width: "300px",
+        minHeight: "calc(100vh -100px)",
+        margin: "10px",
+      }}
+    >
       <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1">Filter by price</Typography>
@@ -29,7 +37,7 @@ function Filter() {
           <Typography variant="subtitle1">Filter by Rating</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <RatingMin />
+          <RatingMin setValue={setValue} value={value} />
         </AccordionDetails>
       </Accordion>
       <ChipSelect

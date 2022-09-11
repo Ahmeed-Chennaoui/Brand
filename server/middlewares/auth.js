@@ -20,13 +20,12 @@ function authenticateToken(req, res, next) {
   jwt.verify(token, process.env.JWT_SECRET, (err, email) => {
     if (err)
       return res.status(403).json({
-        error: "you must be logged in to access this page",
+        error: "you must be logged in to access this page" + err,
       });
-    req.email = email;
-    res.json({
-      ok: "ok",
-    });
-    next();
+    else {
+      req.body.email = email;
+      next();
+    }
   });
 }
 module.exports = {

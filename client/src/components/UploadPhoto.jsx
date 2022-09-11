@@ -1,17 +1,18 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 import { Icon } from "@iconify/react";
-function UploadPhoto({ onChange, imageName }) {
+function UploadPhoto({ onChange, imageName, label, sx }) {
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexWrap: "wrap",
       }}
     >
-      <Button color="secondary" variant="outlined" component="label">
-        Upload profile picture
+      <Button color="secondary" variant="outlined" component="label" sx={sx}>
+        {label}
         <Icon
           icon="ic:baseline-photo-camera"
           style={{ marginLeft: "8px" }}
@@ -20,7 +21,9 @@ function UploadPhoto({ onChange, imageName }) {
         />
         <input hidden accept="image/*" type="file" onChange={onChange} />
       </Button>
-      {imageName && <Typography sx={{ ml: 3 }}>{imageName}</Typography>}
+      {imageName && (
+        <Typography sx={{ ml: 3, textAlign: "center" }}>{imageName}</Typography>
+      )}
     </div>
   );
 }

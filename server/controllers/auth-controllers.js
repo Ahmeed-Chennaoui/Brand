@@ -1,7 +1,12 @@
 const { createUser, User } = require("../models/user-model");
+const {
+  VerifRequest,
+  createVerifRequest,
+} = require("../models/verifRequest-model");
 const { isValidEmail } = require("../utils/isValidEmail");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { request } = require("express");
 
 const register = async (req, res) => {
   const { password, email } = req.body;
@@ -50,8 +55,29 @@ const login = async (req, res) => {
     });
   }
 };
+const sendRequest = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      res.json({
+        error: "Something went wrong finding user " + email,
+      });
+    } else {
+      const request = req.file
+        ? { ...req.body, idPhoto: req.file.filename }
+        : req.body;
+      return await res.json(await createVerifRequest(request));
+    }
+  } catch (err) {
+    res.json({
+      error: "An error has occured" + err,
+    });
+  }
+};
 module.exports = {
   register,
   login,
   sendToken,
+  sendRequest,
 };

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../contexts/globalContext";
 import { styled } from "@mui/material/styles";
 import { Typography, useMediaQuery } from "@mui/material";
 import Hero from "../assets/iron.jpg";
@@ -8,6 +9,8 @@ import { useTheme } from "@emotion/react";
 import { useRef } from "react";
 import Nav from "./Nav";
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from "react-router-dom";
+import { isEmpty } from "../utils/isEmpty";
 
 const HeroContainer = styled("div")(({ theme }) => ({
   backgroundImage: `url(${Hero})`,
@@ -38,7 +41,7 @@ const BrandMotto = styled("div")(({ theme }) => ({
   },
 }));
 
-const BrandMottoMobile = ({ marginBot, setMarginBot }) => {
+const BrandMottoMobile = ({ marginBot, setMarginBot, callback }) => {
   const mobileMotto = useRef();
   function changeHeight() {
     setMarginBot(mobileMotto.current.clientHeight);
@@ -63,7 +66,7 @@ const BrandMottoMobile = ({ marginBot, setMarginBot }) => {
         top: `35vh`,
         textAlign: "center",
         backgroundColor: "#0288d1",
-        borderRadius: "10%",
+        borderRadius: "40px",
         marginBottom: `${marginBot}px`,
       }}
     >
@@ -73,15 +76,30 @@ const BrandMottoMobile = ({ marginBot, setMarginBot }) => {
         needs
       </Typography>
       
+      <Button
+        variant="contained"
+        size="large"
+        sx={{ width: "200px", mt: "20px" }}
+        onClick={callback}
+      >
+        Become one of our professionals
+      </Button>
     </div>
   );
 };
 
 function BrandHero() {
+  const { currentUser } = useContext(GlobalContext);
   //++ this is only to test responisveness ++
-  const [marginBot, setMarginBot] = useState(0);
+  const [marginBot, setMarginBot] = useState(window.clientHeight);
   //++++++++++++++++++++++++++++++++++++++++++++
   const theme = useTheme();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    if (!isEmpty(currentUser)) return navigate("/career");
+
+    navigate("/authError");
+  };
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
   const [fixedNavbar, setFixedNavbar] = useState(false);
   function setFixed() {
@@ -112,18 +130,32 @@ function BrandHero() {
             }}
           >
             <Typography variant="h1" className="motto">
-              Hire experts to get the job done{" "}
+              Hire experts to get the job done
             </Typography>
             <Typography variant="h4" className="description" sx={{ margin: 0 }}>
               We bring you the best professionals from all fields to match all
               your needs
             </Typography>
             
+
+            <Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              sx={{ width: "20vw", minWidth: "230px", maxWidth: "350px" }}
+              onClick={handleClick}
+            >
+              Become one of our professionals
+            </Button>
           </div>
         </BrandMotto>
       )}
       {breakpoint && (
-        <BrandMottoMobile marginBot={marginBot} setMarginBot={setMarginBot} />
+        <BrandMottoMobile
+          marginBot={marginBot}
+          setMarginBot={setMarginBot}
+          callback={handleClick}
+        />
       )}
     </HeroContainer>
   );

@@ -29,12 +29,14 @@ function GoogleSignin() {
       userName: payload.name,
       photo: payload.picture,
     };
-    console.log(data);
     try {
       await backend.post("/user", data);
       const response = await backend.post("/auth/google", data);
-      console.log(response.data);
-      setCurrentUser(data);
+      const authenticatedUser = {
+        ...response.data,
+        ...data,
+      };
+      setCurrentUser(authenticatedUser);
     } catch {
       console.log("something went wrong with google signin");
     }

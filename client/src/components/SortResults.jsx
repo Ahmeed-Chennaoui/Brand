@@ -1,4 +1,5 @@
 import {
+  Box,
   FormControl,
   InputLabel,
   MenuItem,
@@ -7,41 +8,40 @@ import {
 } from "@mui/material";
 import React from "react";
 
-function SortResults() {
-  const [age, setAge] = React.useState("");
-
+function SortResults({ resultsFound, sort, setSort }) {
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setSort(event.target.value);
   };
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
         // paddingInline: "10%",
         alignItems: "center",
+        m: 0,
         marginBottom: "30px",
       }}
     >
-      <Typography>There are 327 results</Typography>
+      <Typography>We found {resultsFound} results</Typography>
 
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="sortResults">Sort by</InputLabel>
         <Select
           labelId="sortResults"
-          id="demo-simple-select-standard"
-          value={age}
+          defaultValue=""
+          value={sort}
           onChange={handleChange}
           label="sort by"
-          sx={{ width: "200px" }}
+          sx={{ width: "160px" }}
         >
-          <MenuItem value={10}>Price Ascending</MenuItem>
-          <MenuItem value={20}>Price Descending</MenuItem>
-          <MenuItem value={30}>Popularity</MenuItem>
+          <MenuItem value="price asc">Price Ascending</MenuItem>
+          <MenuItem value="price desc">Price Descending</MenuItem>
+          <MenuItem value="popularity">Popularity</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </Box>
   );
 }
 

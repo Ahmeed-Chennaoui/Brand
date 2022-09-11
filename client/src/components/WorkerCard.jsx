@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Button, Divider, Paper, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { Box } from "@mui/system";
 import StarIcon from "@mui/icons-material/Star";
+import WorkerAvatar from "./WorkerAvatar";
+import UserModal from "./UserModal";
+import { averageRating } from "../utils/averageRating";
 
 const CardContainer = styled(Paper)(({ theme }) => ({
-  width: "30%",
   padding: "10px",
   borderRadius: "10px",
   marginBottom: "20px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+
+  [theme.breakpoints.up("md")]: {
+    width: "49%",
+  },
+  [theme.breakpoints.up("xl")]: {
+    width: "30%",
+  },
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+  },
 }));
 
-function WorkerCard() {
+function WorkerCard({ worker }) {
+  const [openDetails, setOpenDetails] = useState(false);
+
   return (
     <CardContainer elevation={2}>
       <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
@@ -19,18 +36,26 @@ function WorkerCard() {
         <div>
           <Typography variant="body1">Karim Hmidi</Typography>
           <Typography variant="caption">Software Developer</Typography>
+      <WorkerAvatar worker={worker} />
+      <Typography variant="h5">{worker.description}</Typography>
+      {worker.reviews.length !== 0 && (
+        <div
+          style={{ color: "#faaf00", display: "flex", alignItems: "center" }}
+        >
+          <StarIcon />
+          {averageRating(worker.reviews)}
+          <Typography sx={{ m: 1, color: "rgba(0,0,0,0.7)" }}>
+            {worker.reviews.length !== 1
+              ? `(${worker.reviews.length} Reviews) `
+              : "(1 review)"}
+          </Typography>
         </div>
-      </Box>
-      <Typography variant="h5">
-        Will make responsive websites using React.js and Node.js
-      </Typography>
-      <div style={{ color: "#faaf00", display: "flex", alignItems: "center" }}>
-        <StarIcon />
-        4.9
+      )}
+      {worker.reviews.length === 0 && (
         <Typography sx={{ m: 1, color: "rgba(0,0,0,0.7)" }}>
-          (134 Reviews)
+          (No reviews yet)
         </Typography>
-      </div>
+      )}
       <Divider sx={{ borderColor: "#6439ff" }} />
       <div
         style={{
@@ -45,7 +70,7 @@ function WorkerCard() {
             STARTING AT
           </Typography>
           <Typography color="#2e7d32" fontWeight="bold">
-            50 Dt
+            {worker.price || 0} Dt
           </Typography>
         </div>
 
@@ -54,7 +79,21 @@ function WorkerCard() {
              Get in Touch
            </Button>
         </a>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => setOpenDetails(true)}
+        >
+          Get in Touch
+        </Button>
       </div>
+      {openDetails && (
+        <UserModal
+          worker={worker}
+          open={openDetails}
+          setOpen={setOpenDetails}
+        />
+      )}
     </CardContainer>
   );
 }

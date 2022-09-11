@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import Autocomplete from "@mui/material/Autocomplete";
 import { TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const jobs = [
   { title: "Plumber" },
@@ -48,11 +49,18 @@ const SearchContainer = styled(Autocomplete, {
   },
 }));
 function Searchbar({ fixedNavbar, sticky }) {
+  const navigate = useNavigate();
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      navigate("/search");
+    }
+  };
   return (
     <SearchContainer
       fixed={fixedNavbar}
       sticky={sticky}
       freeSolo
+      onKeyPress={handleKeyPress}
       options={jobs.map((job) => job.title)}
       renderInput={(params) => {
         return (

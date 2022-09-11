@@ -12,8 +12,7 @@ const labels = {
 function getLabelText(value) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
-function RatingMin() {
-  const [value, setValue] = useState(3);
+function RatingMin({ value, setValue }) {
   const [hover, setHover] = useState(-1);
   return (
     <Box

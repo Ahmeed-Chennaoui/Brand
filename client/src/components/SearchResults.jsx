@@ -1,6 +1,6 @@
 import React from "react";
 import WorkerCard from "./WorkerCard";
-function SearchResults() {
+function SearchResults({ data }) {
   return (
     <div
       style={{
@@ -11,15 +11,11 @@ function SearchResults() {
         flexWrap: "wrap",
       }}
     >
-      <WorkerCard />
-      <WorkerCard />
-      <WorkerCard />
-      <WorkerCard />
-      <WorkerCard />
-      <WorkerCard />
-      <WorkerCard />
-      <WorkerCard />
-      <WorkerCard />
+      {React.Children.toArray(
+        data.map((element) => {
+          return <WorkerCard worker={element} />;
+        })
+      )}
     </div>
   );
 }

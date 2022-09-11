@@ -21,7 +21,7 @@ const PriceField = ({ label, value, onChange }) => (
     type="number"
     value={value}
     onChange={onChange}
-    sx={{ m: 1, width: "10ch" }}
+    sx={{ m: 1, width: "15ch" }}
     InputProps={{
       endAdornment: <InputAdornment position="start">DT</InputAdornment>,
     }}
@@ -29,8 +29,8 @@ const PriceField = ({ label, value, onChange }) => (
   />
 );
 
-function PriceSlider() {
-  const [value, setValue] = useState([0, 100]);
+function PriceSlider({ initial_values }) {
+  const [value, setValue] = useState([0, 200]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -44,6 +44,7 @@ function PriceSlider() {
       <div style={{ width: "80%", margin: "auto" }}>
         <CustomSlider
           value={value}
+          max={initial_values ? initial_values[1] : 1000}
           onChange={handleChange}
           valueLabelDisplay="auto"
         />

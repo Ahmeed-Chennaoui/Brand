@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const { isLink } = require("../utils/isLink");
 const path = require("path");
-
+const ReviewSchema = new Schema({
+  email: String,
+  stars: Number,
+  description: String,
+});
 const userSchema = new Schema({
   userName: String,
   googleId: String,
@@ -12,6 +16,12 @@ const userSchema = new Schema({
   picture: String,
   email: String,
   password: String,
+  profession: String,
+  city: String,
+  phone: Number,
+  description: String,
+  price: Number,
+  reviews: [ReviewSchema],
 });
 
 const User = mongoose.model("user", userSchema);
@@ -24,15 +34,20 @@ const findUser = async (email) => {
     return { error: "User doesn't exist" };
   }
 };
+const getProfessionals = async () => {
+  const response = await User.find({ profession: /[\w\W]*/ });
+  return response;
+};
 
 const createUser = async (user, method) => {
   const existingUser = await User.findOne({ email: user.email });
   if (!existingUser) {
     try {
-      const photo =
-        user.photo && !isLink(user.photo)
-          ? path.join(__dirname, "..", "uploads", "images", user.photo)
-          : user.photo;
+      // const photo =
+      //   user.photo && !isLink(user.photo)
+      //     ? path.join(__dirname, "..", "uploads", "images", user.photo)
+      //     : user.photo;
+      const photo = user.photo ? user.photo : null;
 
       let newUserData = {
         userName: user.userName,
@@ -60,6 +75,8 @@ const createUser = async (user, method) => {
 
 module.exports = {
   User,
+  ReviewSchema,
   createUser,
   findUser,
+  getProfessionals,
 };
